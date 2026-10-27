@@ -1,0 +1,14 @@
+{
+  "name": "eudi_logic_authentication",
+  "version": "1.0.0",
+  "description": "EUDI eudi_logic_authentication HAR (mirrors iOS logic-authentication)",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "eudi_logic_analytics": "file:../eudi_logic_analytics",
+    "eudi_logic_business": "file:../eudi_logic_business",
+    "eudi_logic_core": "file:../eudi_logic_core",
+    "eudi_logic_resources": "file:../eudi_logic_resources"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "apiType": "stageMode",
+  "buildOption": {
+    "cangjieOptions": { "path": "./cjpm.toml", "strictCheckDependencies": false, "arguments": ["-j", "1"] }
+  },
+  "targets": [ { "name": "default" } ]
+}

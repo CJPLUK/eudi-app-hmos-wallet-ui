@@ -1,0 +1,17 @@
+{
+  "name": "eudi_feature_common",
+  "version": "1.0.0",
+  "description": "EUDI eudi_feature_common HAR (mirrors iOS feature-common)",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "eudi_logic_analytics": "file:../eudi_logic_analytics",
+    "eudi_logic_api": "file:../eudi_logic_api",
+    "eudi_logic_authentication": "file:../eudi_logic_authentication",
+    "eudi_logic_business": "file:../eudi_logic_business",
+    "eudi_logic_core": "file:../eudi_logic_core",
+    "eudi_logic_resources": "file:../eudi_logic_resources",
+    "eudi_logic_ui": "file:../eudi_logic_ui"
+  }
+}

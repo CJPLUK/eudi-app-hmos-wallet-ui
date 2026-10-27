@@ -1,0 +1,10 @@
+{
+  "app": {
+    "bundleName": "eu.europa.ec.euidi",
+    "vendor": "CJPLUK",
+    "versionCode": 1000000,
+    "versionName": "{yyyy.mm.v}",
+    "icon": "$media:layered_image",
+    "label": "$string:app_name"
+  }
+}

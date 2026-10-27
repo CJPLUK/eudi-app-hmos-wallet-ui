@@ -1,0 +1,16 @@
+{
+  "name": "eudi_logic_assembly",
+  "version": "1.0.0",
+  "description": "EUDI eudi_logic_assembly HAR (mirrors iOS logic-assembly)",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "eudi_feature_common": "file:../eudi_feature_common",
+    "eudi_feature_dashboard": "file:../eudi_feature_dashboard",
+    "eudi_feature_issuance": "file:../eudi_feature_issuance",
+    "eudi_feature_presentation": "file:../eudi_feature_presentation",
+    "eudi_feature_proximity": "file:../eudi_feature_proximity",
+    "eudi_feature_startup": "file:../eudi_feature_startup"
+  }
+}

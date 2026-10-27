@@ -1,0 +1,7 @@
+{
+  "module": {
+    "name": "eudi_logic_business",
+    "type": "har",
+    "deviceTypes": ["phone"]
+  }
+}

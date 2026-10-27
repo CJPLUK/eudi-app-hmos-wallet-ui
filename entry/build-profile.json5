@@ -1,0 +1,55 @@
+{
+  "apiType": "stageMode",
+  "buildOption": {
+    "resOptions": {
+      "copyCodeResource": {
+        "enable": false
+      }
+    },
+    "cangjieOptions": {
+      "path": "./cjpm.toml",
+      "strictCheckDependencies": false,
+      "arguments": ["-j", "1"]
+    },
+    "nativeLib": {
+      "filter": {
+        "enableOverride": true
+      }
+    }
+  },
+  "buildOptionSet": [
+    {
+      "name": "release",
+      "arkOptions": {
+        "obfuscation": {
+          "ruleOptions": {
+            "enable": false,
+            "files": [
+              "./obfuscation-rules.txt"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "targets": [
+    {
+      "name": "default",
+      "config": {
+        "buildOption": {
+          "nativeLib": {
+            "filter": {
+              "enableOverride": true,
+              "excludes": [
+                "**/libeudi_unit_tests.so"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ohosTest"
+    }
+  ]
+}

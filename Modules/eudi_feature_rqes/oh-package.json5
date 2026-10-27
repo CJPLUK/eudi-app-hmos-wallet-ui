@@ -1,0 +1,11 @@
+{
+  "name": "eudi_feature_rqes",
+  "version": "1.0.0",
+  "description": "EUDI eudi_feature_rqes HAR — RQES signing flow (mirrors iOS eudi-lib-ios-rqes-ui Presentation)",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "eudi_feature_common": "file:../eudi_feature_common"
+  }
+}

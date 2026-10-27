@@ -1,0 +1,11 @@
+{
+  "name": "eudi_logic_analytics",
+  "version": "1.0.0",
+  "description": "EUDI eudi_logic_analytics HAR (mirrors iOS logic-analytics)",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "eudi_logic_business": "file:../eudi_logic_business"
+  }
+}

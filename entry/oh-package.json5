@@ -1,0 +1,20 @@
+{
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "@cangjie/cjhybridcomponent": "1.0.0",
+    "libohos_app_cangjie_entry.so": "file:src/main/cangjie/types/libohos_app_cangjie_entry",
+    "eudi_feature_startup": "file:../Modules/eudi_feature_startup",
+    "eudi_feature_dashboard": "file:../Modules/eudi_feature_dashboard",
+    "eudi_feature_issuance": "file:../Modules/eudi_feature_issuance",
+    "eudi_feature_presentation": "file:../Modules/eudi_feature_presentation",
+    "eudi_feature_proximity": "file:../Modules/eudi_feature_proximity",
+    "eudi_logic_core": "file:../Modules/eudi_logic_core",
+    "eudi_unit_tests": "file:../Modules/eudi_unit_tests",
+    "libeudi_unit_tests.so": "file:../Modules/eudi_unit_tests/src/main/cangjie/types/libeudi_unit_tests"
+  }
+}

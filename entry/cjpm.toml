@@ -1,0 +1,96 @@
+[package]
+  cjc-version = "1.1.0"
+  compile-option = "--dy-std --cfg=\"${COMPILE_CONDITION_ENTRY}\""
+  description = "CangjieUI Application"
+  link-option = ""
+  name = "ohos_app_cangjie_entry"
+  output-type = "dynamic"
+  src-dir = "./src/main/cangjie"
+  target-dir = ""
+  version = "1.0.0"
+  [package.package-configuration]
+  [package.scripts]
+
+[dependencies]
+  [dependencies.eudi_logic_assembly]
+    path = "../Modules/eudi_logic_assembly"
+  [dependencies.eudi_logic_core]
+    path = "../Modules/eudi_logic_core"
+  [dependencies.ohos_app_cangjie_eudi_cjcbor]
+    path = "../third_party/eudi_lib_cbor/eudi_cjcbor"
+  [dependencies.ohos_app_cangjie_eudi_cjmdoc_security]
+    path = "../third_party/eudi_lib_mdoc_security/eudi_cjmdoc_security"
+  [dependencies.ohos_app_cangjie_eudi_cjmdoc_transfer]
+    path = "../third_party/eudi_lib_mdoc_transfer/eudi_cjmdoc_transfer"
+  [dependencies.ohos_app_cangjie_eudi_cjwallet_kit]
+    path = "../third_party/eudi_lib_wallet_kit/eudi_cjwallet_kit"
+  [dependencies.ohos_app_cangjie_eudi_cjrqes]
+    path = "../third_party/eudi_lib_rqes/eudi_cjrqes"
+  # RQES CSC client + RqesKit orchestration (Phase 2/3). The signing-flow Domain layer
+  # (eudi_cjrqes_ui, Phase 4a) is registered when the SignDocument feature imports it (4b);
+  # here the entry only needs RqesKit for the startup temp-dir seam (RqesTempDir.set).
+  [dependencies.ohos_app_cangjie_eudi_cjrqes_csc]
+    path = "../third_party/eudi_lib_rqes/eudi_cjrqes_csc"
+  [dependencies.ohos_app_cangjie_eudi_cjrqes_kit]
+    path = "../third_party/eudi_lib_rqes/eudi_cjrqes_kit"
+  # app_composition imports EudiRQESUi + makeRQESInteractor directly (constructs the SDK
+  # singleton at startup + builds the RQES flow ViewModels), so it must be a direct dependency.
+  [dependencies.ohos_app_cangjie_eudi_cjrqes_ui]
+    path = "../third_party/eudi_lib_rqes/eudi_cjrqes_ui"
+  [dependencies.eudi_lib_core_crypto]
+    path = "../third_party/eudi_lib_core_crypto/eudi_cjcrypto"
+  # ── EUDI UI 组合根新增依赖 (= iOS Wallet app target import graph) ──────────────
+  [dependencies.eudi_logic_ui]
+    path = "../Modules/eudi_logic_ui"
+  [dependencies.eudi_logic_resources]
+    path = "../Modules/eudi_logic_resources"
+  [dependencies.eudi_logic_business]
+    path = "../Modules/eudi_logic_business"
+  [dependencies.eudi_logic_storage]
+    path = "../Modules/eudi_logic_storage"
+  [dependencies.eudi_logic_api]
+    path = "../Modules/eudi_logic_api"
+  [dependencies.eudi_feature_common]
+    path = "../Modules/eudi_feature_common"
+  [dependencies.eudi_logic_authentication]
+    path = "../Modules/eudi_logic_authentication"
+  # ── feature 依赖 (eudi_feature_startup 路径固定, 其余由 hvigor 变量注入) ─────
+  [dependencies.eudi_feature_startup]
+    path = "../Modules/eudi_feature_startup"
+  [dependencies.eudi_feature_dashboard]
+    path = "../Modules/eudi_feature_dashboard"
+  [dependencies.eudi_feature_issuance]
+    path = "../Modules/eudi_feature_issuance"
+  [dependencies.eudi_feature_presentation]
+    path = "../Modules/eudi_feature_presentation"
+  [dependencies.eudi_feature_proximity]
+    path = "../Modules/eudi_feature_proximity"
+  # RQES signing flow UI (Presentation); pulls the RQES Domain 底座 + kit/csc transitively.
+  [dependencies.eudi_feature_rqes]
+    path = "../Modules/eudi_feature_rqes"
+
+[profile]
+  [profile.build]
+    incremental = true
+    lto = ""
+    [profile.build.combined]
+      ohos_app_cangjie_entry = "dynamic"
+  [profile.customized-option]
+    debug = "-g -Woff all -Won apilevel-check"
+    release = "--fast-math -O2 -s -Woff all -Won apilevel-check"
+  [profile.test]
+
+[target]
+  [target.aarch64-linux-ohos]
+    compile-option = "-B \"${DEVECO_CANGJIE_HOME}/build-tools/third_party/llvm/bin\" -B \"${DEVECO_OH_NATIVE_HOME}/sysroot/usr/lib/aarch64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/sysroot/usr/lib/aarch64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/llvm/lib/clang/15.0.4/lib/aarch64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/llvm/lib/aarch64-linux-ohos\" --sysroot \"${DEVECO_OH_NATIVE_HOME}/sysroot\""
+    [target.aarch64-linux-ohos.bin-dependencies]
+      path-option = [ "${AARCH64_LIBS}", "${AARCH64_MACRO_LIBS}", "${AARCH64_KIT_LIBS}", "./libs/stdx" ]
+      [target.aarch64-linux-ohos.bin-dependencies.package-option]
+  [target.x86_64-linux-ohos]
+    compile-option = "-B \"${DEVECO_CANGJIE_HOME}/build-tools/third_party/llvm/bin\" -B \"${DEVECO_OH_NATIVE_HOME}/sysroot/usr/lib/x86_64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/sysroot/usr/lib/x86_64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/llvm/lib/clang/15.0.4/lib/x86_64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/llvm/lib/x86_64-linux-ohos\" --sysroot \"${DEVECO_OH_NATIVE_HOME}/sysroot\""
+    [target.x86_64-linux-ohos.bin-dependencies]
+      path-option = [ "${X86_64_OHOS_LIBS}", "${X86_64_OHOS_MACRO_LIBS}", "${X86_64_OHOS_KIT_LIBS}" ]
+  [target.x86_64-unknown-windows-gnu]
+    [target.x86_64-unknown-windows-gnu.bin-dependencies]
+      path-option = [ "${X86_64_LIBS}", "${X86_64_MACRO_LIBS}" ]
+      [target.x86_64-unknown-windows-gnu.bin-dependencies.package-option]

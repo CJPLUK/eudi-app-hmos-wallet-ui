@@ -1,0 +1,26 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+
+
+      "value": "Eudi Wallet"
+    },
+    {
+      "name": "camera_permission_reason",
+      "value": "Scan a QR code to receive or present a credential"
+    },
+    {
+      "name": "bluetooth_permission_reason",
+      "value": "Present a credential in person to a nearby verifier over Bluetooth"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "module": {
+    "name": "eudi_feature_startup",
+    "type": "har",
+    "deviceTypes": ["phone"]
+  }
+}

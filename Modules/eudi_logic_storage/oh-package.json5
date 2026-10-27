@@ -1,0 +1,12 @@
+{
+  "name": "eudi_logic_storage",
+  "version": "1.0.0",
+  "description": "EUDI eudi_logic_storage HAR (mirrors iOS logic-storage)",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "eudi_logic_business": "file:../eudi_logic_business",
+    "eudi_logic_resources": "file:../eudi_logic_resources"
+  }
+}

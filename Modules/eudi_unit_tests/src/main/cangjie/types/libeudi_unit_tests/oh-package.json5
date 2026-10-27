@@ -1,0 +1,6 @@
+{
+  "name": "libeudi_unit_tests.so",
+  "types": "./Index.d.ts",
+  "version": "1.0.0",
+  "description": "ohosTest-only Cangjie unit-test bridge"
+}

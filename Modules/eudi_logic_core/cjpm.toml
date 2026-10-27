@@ -1,0 +1,52 @@
+[package]
+  cjc-version = "1.1.0"
+  compile-option = ""
+  description = "EUDI module eudi_logic_core (Cangjie HAR)"
+  link-option = ""
+  name = "eudi_logic_core"
+  output-type = "dynamic"
+  src-dir = "./src/main/cangjie"
+  target-dir = ""
+  version = "1.0.0"
+  package-configuration = {}
+  scripts = {}
+
+[dependencies]
+  eudi_logic_api = { path = "../eudi_logic_api" }
+  eudi_logic_business = { path = "../eudi_logic_business" }
+  eudi_logic_resources = { path = "../eudi_logic_resources" }
+  eudi_logic_storage = { path = "../eudi_logic_storage" }
+  ohos_app_cangjie_eudi_cjwallet_kit = { path = "../../third_party/eudi_lib_wallet_kit/eudi_cjwallet_kit" }
+  # Transitive wallet-kit packages logic-core imports directly at the engine boundary.
+  ohos_app_cangjie_eudi_cjmdoc_data_model = { path = "../../third_party/eudi_lib_mdoc_data_model/eudi_cjmdoc_data_model" }
+  ohos_app_cangjie_eudi_cjcbor = { path = "../../third_party/eudi_lib_cbor/eudi_cjcbor" }
+  ohos_app_cangjie_eudi_cjmdoc_transfer = { path = "../../third_party/eudi_lib_mdoc_transfer/eudi_cjmdoc_transfer" }
+  ohos_app_cangjie_eudi_cjmdoc_security = { path = "../../third_party/eudi_lib_mdoc_security/eudi_cjmdoc_security" }
+  ohos_app_cangjie_eudi_cjwallet_storage = { path = "../../third_party/eudi_lib_wallet_storage/eudi_cjwallet_storage" }
+  ohos_app_cangjie_eudi_cjstatium = { path = "../../third_party/eudi_lib_statium/eudi_cjstatium" }
+  ohos_app_cangjie_eudi_cjopenid4vp_vci = { path = "../../third_party/eudi_lib_openid4vp_vci/eudi_cjopenid4vp_vci" }
+  ohos_app_cangjie_eudi_cjetsi_1196x2 = { path = "../../third_party/eudi_lib_etsi_1196x2/eudi_cjetsi_1196x2" }
+  # x509 facade (Cert.fromDer) for the transaction-log presenter-name (subject CN)
+  # of the reader certificate chain — same dep the wallet-kit itself uses.
+  ohos_app_cangjie_eudi_cjx509 = { path = "../../third_party/eudi_lib_x509/eudi_cjx509" }
+
+[profile]
+  [profile.build]
+    incremental = true
+    lto = ""
+    [profile.build.combined]
+      eudi_logic_core = "dynamic"
+  [profile.customized-option]
+    debug = "-g -Woff all -Won apilevel-check"
+    release = "-O2 -s -Woff all -Won apilevel-check"
+
+[target.aarch64-linux-ohos]
+  compile-option = "-B \"${DEVECO_CANGJIE_HOME}/build-tools/third_party/llvm/bin\" -B \"${DEVECO_OH_NATIVE_HOME}/sysroot/usr/lib/aarch64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/sysroot/usr/lib/aarch64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/llvm/lib/clang/15.0.4/lib/aarch64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/llvm/lib/aarch64-linux-ohos\" --sysroot \"${DEVECO_OH_NATIVE_HOME}/sysroot\""
+[target.aarch64-linux-ohos.bin-dependencies]
+  path-option = ["${AARCH64_LIBS}", "${AARCH64_MACRO_LIBS}", "${AARCH64_KIT_LIBS}", "../../entry/libs/stdx"]
+  package-option = {}
+
+[target.x86_64-linux-ohos]
+  compile-option = "-B \"${DEVECO_CANGJIE_HOME}/build-tools/third_party/llvm/bin\" -B \"${DEVECO_OH_NATIVE_HOME}/sysroot/usr/lib/x86_64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/sysroot/usr/lib/x86_64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/llvm/lib/clang/15.0.4/lib/x86_64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/llvm/lib/x86_64-linux-ohos\" --sysroot \"${DEVECO_OH_NATIVE_HOME}/sysroot\""
+[target.x86_64-linux-ohos.bin-dependencies]
+  path-option = ["${X86_64_OHOS_LIBS}", "${X86_64_OHOS_MACRO_LIBS}", "${X86_64_OHOS_KIT_LIBS}"]

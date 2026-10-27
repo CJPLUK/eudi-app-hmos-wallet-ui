@@ -1,0 +1,7 @@
+{
+  "module": {
+    "name": "eudi_feature_proximity",
+    "type": "har",
+    "deviceTypes": ["phone"]
+  }
+}

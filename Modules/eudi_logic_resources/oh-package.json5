@@ -1,0 +1,9 @@
+{
+  "name": "eudi_logic_resources",
+  "version": "1.0.0",
+  "description": "EUDI eudi_logic_resources HAR (mirrors iOS logic-resources)",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {}
+}

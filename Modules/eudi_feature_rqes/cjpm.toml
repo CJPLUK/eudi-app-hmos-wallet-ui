@@ -1,0 +1,45 @@
+[package]
+  cjc-version = "1.1.0"
+  compile-option = ""
+  description = "EUDI module eudi_feature_rqes — RQES signing flow UI (ports eudi-lib-ios-rqes-ui Presentation)"
+  link-option = ""
+  name = "eudi_feature_rqes"
+  output-type = "dynamic"
+  src-dir = "./src/main/cangjie"
+  target-dir = ""
+  version = "1.0.0"
+  package-configuration = {}
+  scripts = {}
+
+[dependencies]
+  eudi_feature_common = { path = "../eudi_feature_common" }
+  eudi_logic_ui = { path = "../eudi_logic_ui" }
+  eudi_logic_resources = { path = "../eudi_logic_resources" }
+  eudi_logic_business = { path = "../eudi_logic_business" }
+  eudi_logic_core = { path = "../eudi_logic_core" }
+  # RQES Domain 底座(facade/controller/interactor/entities)。
+  ohos_app_cangjie_eudi_cjrqes_ui = { path = "../../third_party/eudi_lib_rqes/eudi_cjrqes_ui" }
+  # Directly imported: csc.{ListCredentialInfo, HashAlgorithmOID}, kit.{Document, uuidV4}.
+  ohos_app_cangjie_eudi_cjrqes_csc = { path = "../../third_party/eudi_lib_rqes/eudi_cjrqes_csc" }
+  ohos_app_cangjie_eudi_cjrqes_kit = { path = "../../third_party/eudi_lib_rqes/eudi_cjrqes_kit" }
+
+[profile]
+  [profile.build]
+    incremental = true
+    lto = ""
+    [profile.build.combined]
+      eudi_feature_rqes = "dynamic"
+  [profile.customized-option]
+    debug = "-g -Woff all -Won apilevel-check"
+    release = "-O2 -s -Woff all -Won apilevel-check"
+
+[target.aarch64-linux-ohos]
+  compile-option = "-B \"${DEVECO_CANGJIE_HOME}/build-tools/third_party/llvm/bin\" -B \"${DEVECO_OH_NATIVE_HOME}/sysroot/usr/lib/aarch64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/sysroot/usr/lib/aarch64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/llvm/lib/clang/15.0.4/lib/aarch64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/llvm/lib/aarch64-linux-ohos\" --sysroot \"${DEVECO_OH_NATIVE_HOME}/sysroot\""
+[target.aarch64-linux-ohos.bin-dependencies]
+  path-option = ["${AARCH64_LIBS}", "${AARCH64_MACRO_LIBS}", "${AARCH64_KIT_LIBS}"]
+  package-option = {}
+
+[target.x86_64-linux-ohos]
+  compile-option = "-B \"${DEVECO_CANGJIE_HOME}/build-tools/third_party/llvm/bin\" -B \"${DEVECO_OH_NATIVE_HOME}/sysroot/usr/lib/x86_64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/sysroot/usr/lib/x86_64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/llvm/lib/clang/15.0.4/lib/x86_64-linux-ohos\" -L \"${DEVECO_OH_NATIVE_HOME}/llvm/lib/x86_64-linux-ohos\" --sysroot \"${DEVECO_OH_NATIVE_HOME}/sysroot\""
+[target.x86_64-linux-ohos.bin-dependencies]
+  path-option = ["${X86_64_OHOS_LIBS}", "${X86_64_OHOS_MACRO_LIBS}", "${X86_64_OHOS_KIT_LIBS}"]

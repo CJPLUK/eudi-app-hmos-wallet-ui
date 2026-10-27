@@ -1,0 +1,7 @@
+{
+  "module": {
+    "name": "eudi_feature_rqes",
+    "type": "har",
+    "deviceTypes": ["phone"]
+  }
+}

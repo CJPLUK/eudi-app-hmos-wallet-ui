@@ -1,0 +1,11 @@
+{
+  "name": "eudi_feature_proximity",
+  "version": "1.0.0",
+  "description": "EUDI eudi_feature_proximity HAR (mirrors iOS feature-proximity)",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "eudi_feature_common": "file:../eudi_feature_common"
+  }
+}

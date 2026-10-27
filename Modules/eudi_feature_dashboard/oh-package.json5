@@ -1,0 +1,11 @@
+{
+  "name": "eudi_feature_dashboard",
+  "version": "1.0.0",
+  "description": "EUDI eudi_feature_dashboard HAR (mirrors iOS feature-dashboard)",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "eudi_feature_common": "file:../eudi_feature_common"
+  }
+}

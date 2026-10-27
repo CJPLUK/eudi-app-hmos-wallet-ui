@@ -1,0 +1,11 @@
+{
+  "name": "eudi_logic_business",
+  "version": "1.0.0",
+  "description": "EUDI eudi_logic_business HAR (mirrors iOS logic-business)",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "eudi_logic_resources": "file:../eudi_logic_resources"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "eudi_unit_tests",
+  "version": "1.0.0",
+  "description": "iOS-parity Cangjie unit tests (ohosTest HAP only)",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "eudi_feature_common": "file:../eudi_feature_common",
+    "eudi_feature_dashboard": "file:../eudi_feature_dashboard",
+    "eudi_feature_issuance": "file:../eudi_feature_issuance",
+    "eudi_feature_presentation": "file:../eudi_feature_presentation",
+    "eudi_feature_proximity": "file:../eudi_feature_proximity",
+    "eudi_feature_startup": "file:../eudi_feature_startup",
+    "eudi_logic_authentication": "file:../eudi_logic_authentication",
+    "eudi_logic_business": "file:../eudi_logic_business",
+    "eudi_logic_core": "file:../eudi_logic_core",
+    "eudi_logic_resources": "file:../eudi_logic_resources",
+    "eudi_logic_ui": "file:../eudi_logic_ui"
+  }
+}

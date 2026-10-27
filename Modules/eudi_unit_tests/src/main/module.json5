@@ -1,0 +1,7 @@
+{
+  "module": {
+    "name": "eudi_unit_tests",
+    "type": "har",
+    "deviceTypes": ["phone"]
+  }
+}

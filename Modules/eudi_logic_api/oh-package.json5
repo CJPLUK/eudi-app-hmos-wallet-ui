@@ -1,0 +1,12 @@
+{
+  "name": "eudi_logic_api",
+  "version": "1.0.0",
+  "description": "EUDI eudi_logic_api HAR (mirrors iOS logic-api)",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "eudi_logic_analytics": "file:../eudi_logic_analytics",
+    "eudi_logic_business": "file:../eudi_logic_business"
+  }
+}

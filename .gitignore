@@ -1,0 +1,41 @@
+node_modules/
+oh_modules/
+/local.properties
+/.idea
+**/build
+/.hvigor
+.cxx
+/.clangd
+/.clang-format
+/.clang-tidy
+**/.test
+/.appanalyzer
+**/cj_res
+**/*.cj.macrocall
+**/ability_mainability_entry.cj
+**/module_**_entry.cj
+**/IDL_Dependencies_List~
+**/build-script-cache
+# third_party/eudi_lib_* are git submodules (see .gitmodules). The lock
+# directory hvigorfile.ts creates while initialising them is transient.
+/third_party/.deps-sync.lock
+
+.DS_Store
+
+# Cangjie build output
+**/target
+# nested IDE dirs
+**/.idea
+
+# Runtime artifacts
+/logs/
+/output/
+*.log
+
+# Local-only developer material: the root build-profile.json5 carries
+# DevEco's auto-generated signing config (absolute paths to ~/.ohos material
+# plus encrypted key/store passwords), so the file stays tracked with an empty
+# signingConfigs and local edits are hidden via:
+#   git update-index --skip-worktree build-profile.json5
+# Debug payloads kept out of the repo (see AUTH_FORM_FILL_JS):
+/dev-progress/local/

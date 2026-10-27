@@ -1,0 +1,7 @@
+{
+  "module": {
+    "name": "eudi_logic_resources",
+    "type": "har",
+    "deviceTypes": ["phone"]
+  }
+}

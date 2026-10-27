@@ -1,0 +1,11 @@
+{
+  "name": "eudi_feature_issuance",
+  "version": "1.0.0",
+  "description": "EUDI eudi_feature_issuance HAR (mirrors iOS feature-issuance)",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "eudi_feature_common": "file:../eudi_feature_common"
+  }
+}

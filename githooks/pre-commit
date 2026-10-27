@@ -1,0 +1,85 @@
+#!/bin/bash
+###############################################################################
+# pre-commit — run the host-runnable Cangjie unit tests before every commit.
+#
+# Git does not version .git/hooks, so this file is the source of truth and
+# githooks/install.sh copies it into place.
+#
+# Why it exists: on 2026-07-06 a UI commit added an ohos import to
+# logic-business. That stopped `cjpm test` from building the module, which
+# silently disabled its 46 unit tests for a month — nothing noticed, because
+# nothing ran them. A build failure here is a real failure, not noise.
+#
+# Device suites are not run here: they need an attached phone.
+# Compile + run them with ./run_device_tests.sh (app HAP + ohosTest HAP).
+#
+# Escape hatch:  EUDI_SKIP_TESTS=1 git commit ...
+###############################################################################
+set -uo pipefail
+
+if [ "${EUDI_SKIP_TESTS:-0}" = "1" ]; then
+    echo "pre-commit: host tests skipped (EUDI_SKIP_TESTS=1)"
+    exit 0
+fi
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+RUNNER="$REPO_ROOT/run_tests.sh"
+
+# Generated sources must match their generator, otherwise a hand-edit to the
+# .cj or a metadata refresh without regeneration drifts silently.
+GEN="$REPO_ROOT/third_party/libphonenumber/gen_phone_metadata.py"
+if [ -f "$GEN" ] && command -v python3 >/dev/null 2>&1; then
+    if ! GEN_OUT="$(python3 "$GEN" --check 2>&1)"; then
+        echo "$GEN_OUT"
+        echo
+        echo "pre-commit: generated phone metadata is stale — commit aborted."
+        echo "  regenerate:  python3 third_party/libphonenumber/gen_phone_metadata.py"
+        echo "  override:    EUDI_SKIP_TESTS=1 git commit ..."
+        exit 1
+    fi
+fi
+
+if [ ! -x "$RUNNER" ]; then
+    echo "pre-commit: $RUNNER not executable, skipping host tests"
+    exit 0
+fi
+
+# Fresh clone or CI image without the Cangjie toolchain: warn, do not block.
+if [ -z "$(ls -1 "$HOME/.cangjie-sdk" 2>/dev/null)" ] && [ -z "${DEVECO_CANGJIE_HOME:-}" ]; then
+    echo "pre-commit: Cangjie SDK not found, skipping host tests"
+    exit 0
+fi
+
+# Listed explicitly rather than auto-discovered. If a module ever stops being
+# host-runnable, that is the exact regression this hook exists to catch —
+# discovering "modules that still build" would silently skip it instead.
+MODULES="eudi_logic_business"
+
+abort() {
+    echo "$1" | tail -40
+    echo
+    echo "pre-commit: host unit tests FAILED for ${2} — commit aborted."
+    echo "  reproduce:  ./run_tests.sh ${2}"
+    echo "  override:   EUDI_SKIP_TESTS=1 git commit ..."
+    exit 1
+}
+
+for m in $MODULES; do
+    if ! OUT="$("$RUNNER" "$m" 2>&1)"; then
+        abort "$OUT" "$m"
+    fi
+
+    # cjpm colours its summary, so strip the escapes before reading the counts.
+    CLEAN="$(printf '%s\n' "$OUT" | sed $'s/\033\\[[0-9;]*[a-zA-Z]//g')"
+    PASSED="$(printf '%s\n' "$CLEAN" | grep -oE 'PASSED: [0-9]+' | tail -1 | grep -oE '[0-9]+')"
+    FAILED="$(printf '%s\n' "$CLEAN" | grep -oE 'FAILED: [0-9]+' | tail -1 | grep -oE '[0-9]+')"
+
+    # A zero exit with no cases run is the failure mode this hook is here for:
+    # the module silently stopped being testable. Treat it as a failure.
+    if [ -z "$PASSED" ] || [ "$PASSED" = "0" ] || [ "${FAILED:-1}" != "0" ]; then
+        abort "$CLEAN" "$m"
+    fi
+    echo "pre-commit: ${m} — ${PASSED} passed, ${FAILED} failed"
+done
+
+exit 0

@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_test_desc",
+      "value": "EUDI Cangjie unit-test HAP"
+    },
+    {
+      "name": "TestAbility_desc",
+      "value": "Cangjie unit-test ability"
+    },
+    {
+      "name": "TestAbility_label",
+      "value": "EUDI tests"
+    }
+  ]
+}
