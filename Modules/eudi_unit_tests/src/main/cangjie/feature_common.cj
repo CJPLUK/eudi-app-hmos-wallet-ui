@@ -615,7 +615,9 @@ func runBiometryViewModelTests(t: DeviceTestRun): Unit {
 
     // testAuthenticate_WhenRequestBiometricUnlockFails_ThenEmitsFailureWithError
     // iOS: requestBiometricUnlock() throws SystemBiometryError.deniedAccess → .failure(.deniedAccess).
-    // Cangjie: onBiometry() with UnlockFailure(DeniedAccess) → false + pinError = denial message.
+    // Cangjie: onBiometry() with UnlockFailure(DeniedAccess) → false + biometryError
+    // carries the denial message (iOS `.alert(item: biometryError)` channel — the
+    // real-biometrics port routes unlock failures there, not into pinError).
     { =>
         let fake = FakeBiometryController()
         fake.unlockResult = BiometryUnlockResult.UnlockFailure(BiometryError.DeniedAccess)
@@ -623,12 +625,12 @@ func runBiometryViewModelTests(t: DeviceTestRun): Unit {
         let tp = FakePinThrottleProvider()
         let (vm, _) = makeBiometryVMWith(fake, ps, tp)
         let result = vm.onBiometry()
-        let hasError = match (vm.viewState.pinError) {
+        let hasError = match (vm.viewState.biometryError) {
             case Some(_) => true
             case None => false
         }
         t.check(!result, "biometry.authenticate_deniedAccess_false")
-        t.check(hasError, "biometry.authenticate_deniedAccess_pinError")
+        t.check(hasError, "biometry.authenticate_deniedAccess_biometryError")
     }()
 
     // testAuthenticate_WhenRequestThrowsGenericError_ThenEmitsBiometricErrorFailure

@@ -36,7 +36,7 @@ import eudi_logic_core.{
     ProximitySessionCoordinator, RemoteSessionCoordinator,
     OfferedIssuanceModel, OfferedDocModel,
     ScopedDocument, DynamicIssuancePendingData,
-    ParsedUrlRef, DeferredDocument,
+    ParsedUrlRef, DeferredDocument, IssuedDocument,
     WalletCoreError, RegistrationRefusedError
 }
 import eudi_feature_dashboard.{
@@ -383,8 +383,13 @@ func runDocumentTabInteractorTests(t: DeviceTestRun): Unit {
     // iOS: DocumentTabInteractor.fetchDocuments → usageCount: isBatchCounterEnabled() ? … : nil
     // Cangjie: the card's usageText is built only while PrefsKey.batchCounter is on;
     // off → empty (badge hidden), on → "remaining/total" (1/1 when the engine has no counts).
+    // The badge is built only for an IssuedDocument (usageTextFor matches on the
+    // concrete type), so the fixture must be one — FakeDocClaims never gets a badge.
     let fakeBadge = FakeWalletKitController()
-    fakeBadge.allDocuments = [makeDocClaimsDecodable(id: "pid-badge")]
+    fakeBadge.allDocuments = [IssuedDocument(
+        id: "pid-badge", createdAt: DateTime.now(), displayName: Some("Fake Document"),
+        docType: "eu.europa.ec.eudi.pid.1", credentialPolicy: CredentialPolicy.rotateUse
+    )]
     let prefsBadgeOff = SettingsPrefsFake()
     prefsBadgeOff.bools[PrefsKey.batchCounter.rawValue] = false
     let rowsBadgeOff = DashboardInteractor(walletController: fakeBadge, prefs: prefsBadgeOff).fetchDocumentRows()
@@ -1517,6 +1522,9 @@ func runSettingsInteractorTests(t: DeviceTestRun): Unit {
     // settings toggle gates on. Verify isBiometryAvailable() reflects the controller.
     let biomAvailController = FakeBiometryController()
     biomAvailController.availability = BiometryAvailability.Available
+    // isBiometryAvailable() reads getBiometryType() (iOS: type != .none), so the
+    // fake must carry a concrete sensor type, not just the availability verdict.
+    biomAvailController.biometryType = BiometryType.FaceID
     let settingsAvail = SettingsInteractor(
         configLogic: FakeConfigLogic(),
         prefsController: SettingsPrefsFake(),

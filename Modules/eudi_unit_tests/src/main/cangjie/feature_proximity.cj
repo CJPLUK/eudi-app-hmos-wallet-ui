@@ -937,6 +937,14 @@ func runFeatureProximityTests(t: DeviceTestRun): Unit {
     let vmE = ProximityConnectionViewModel(router: InMemoryRouterHost(), interactor: interE)
     vmE.initialize()
     t.eqInt(sessE.startQrEngagementCalls, 1, "proximity.connectionVm_initialize_startsQrEngagement")
+    // receiveRequest runs on a spawned worker (the real-BLE port blocks in it, so
+    // coordinator.initialize spawns — iOS `async let`); wait out the race before
+    // asserting the call was made.
+    var receiveWaits = 0
+    while (sessE.receiveRequestCalls == 0 && receiveWaits < 200) {
+        sleep(Duration.millisecond * 10)
+        receiveWaits++
+    }
     t.eqInt(sessE.receiveRequestCalls, 1, "proximity.connectionVm_initialize_receivesRequest")
     t.check(!vmE.viewState.hasQr, "proximity.connectionVm_noQrBeforeEngagementReady")
     sessE.emit(PresentationSessionStatus.qrEngagementReady)
