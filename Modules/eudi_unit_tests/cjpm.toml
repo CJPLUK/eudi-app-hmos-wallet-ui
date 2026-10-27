@@ -24,6 +24,7 @@
   eudi_logic_resources = { path = "../eudi_logic_resources" }
   eudi_logic_ui = { path = "../eudi_logic_ui" }
   ohos_app_cangjie_eudi_cjmdoc_security = { path = "../../third_party/eudi_lib_mdoc_security/eudi_cjmdoc_security" }
+  ohos_app_cangjie_eudi_cjopenid4vp_vci = { path = "../../third_party/eudi_lib_openid4vp_vci/eudi_cjopenid4vp_vci" }
   ohos_app_cangjie_eudi_cjwallet_kit = { path = "../../third_party/eudi_lib_wallet_kit/eudi_cjwallet_kit" }
 
 [profile]

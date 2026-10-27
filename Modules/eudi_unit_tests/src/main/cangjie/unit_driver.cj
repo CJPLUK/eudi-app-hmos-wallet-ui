@@ -68,6 +68,10 @@ public func runAllUnitSuites(): String {
     t.suite("deepLink", runDeepLinkTests)
     // logic-core issuer-trust classifier (iOS TestErrorIssuerTrust, 10)
     t.suite("errorIssuerTrust", runErrorIssuerTrustTests)
+    // registration-certificate (WRPRC) trust layer (iOS TestRelyingPartyRegistrationUiModel 17
+    // + TestPresentationPolicyViolationOverasking 10 + TestPolicyPurposeLocalized 4
+    // + TestRequestDataUiModelSelection 3)
+    t.suite("registrationTrust", runRegistrationTrustTests)
 
     var detail = ""
     for (f in t.failures) { detail += " | ${f}" }

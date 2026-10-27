@@ -43,4 +43,7 @@ class MigratedIosParityTests {
 
     @TestCase
     func errorIssuerTrust(): Unit { expectClean("errorIssuerTrust", runErrorIssuerTrustTests) }
+
+    @TestCase
+    func registrationTrust(): Unit { expectClean("registrationTrust", runRegistrationTrustTests) }
 }
