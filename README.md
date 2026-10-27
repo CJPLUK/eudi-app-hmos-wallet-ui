@@ -127,7 +127,7 @@ Modules/                  eudi_feature_* (screens) and eudi_logic_* (business lo
 third_party/              eudi_lib_* git submodules
   libphonenumber/           Phone number metadata subset and generators
 githooks/                 Versioned git hooks (install with githooks/install.sh)
-docs/                     Demo video and poster
+docs/                     Demo video, poster and test reports
 ```
 
 `Modules/eudi_logic_business/src/main/cangjie/phone_metadata*.cj` are generated; regenerate them
@@ -156,6 +156,9 @@ To run the host tests before every commit, install the hook once per clone:
 ```bash
 ./githooks/install.sh          # skip once with EUDI_SKIP_TESTS=1 git commit ...
 ```
+
+The latest test report, with iOS case parity, end-to-end results and residual risks, is in
+[docs/test-report/2026-10-27](docs/test-report/2026-10-27/README.en.md).
 
 ## Disclaimer
 

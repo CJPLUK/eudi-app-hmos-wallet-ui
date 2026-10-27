@@ -116,7 +116,7 @@ Modules/                  eudi_feature_*（界面）与 eudi_logic_*（业务逻
 third_party/              eudi_lib_* git submodule
   libphonenumber/           手机号元数据子集与生成器
 githooks/                 版本化的 git 钩子（用 githooks/install.sh 安装）
-docs/                     演示视频与海报
+docs/                     演示视频、海报与测试报告
 ```
 
 `Modules/eudi_logic_business/src/main/cangjie/phone_metadata*.cj` 是生成文件，请勿手改；改动请运行
@@ -143,6 +143,9 @@ HDC_TARGET=<serial-or-host:port> ./run_device_tests.sh
 ```bash
 ./githooks/install.sh          # 临时跳过：EUDI_SKIP_TESTS=1 git commit ...
 ```
+
+最新测试报告（含与 iOS 用例的对齐、端到端结果与残留风险）见
+[docs/test-report/2026-10-27](docs/test-report/2026-10-27/README.md)。
 
 ## 免责声明
 

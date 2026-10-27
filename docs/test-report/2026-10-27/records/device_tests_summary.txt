@@ -1,0 +1,18 @@
+═══ [1/4] assembleHap entry@default (app, no unit tests) ═══
+> hvigor BUILD SUCCESSFUL in 11 min 10 s 476 ms 
+app build rc=0
+═══ [2/4] assembleHap entry@ohosTest (test HAP with eudi_unit_tests) ═══
+> hvigor BUILD SUCCESSFUL in 15 s 374 ms 
+ohosTest build rc=0
+═══ [3/4] install app HAP + ohosTest HAP ═══
+[Info]App install path:<repo>/entry/build/default/outputs/default/entry-default-signed.hap msg:install bundle successfully. 
+[Info]App install path:<repo>/entry/build/default/outputs/ohosTest/entry-ohosTest-signed.hap msg:install bundle successfully. 
+═══ [4/4] aa test ═══
+CJ_TEST_SUMMARY: passed=630 failed=0 error=0
+TestFinished-ResultCode: 0
+TestFinished-ResultMsg: cangjie unit tests: passed=630 failed=0 error=0
+10-27 15:16:52.234 60932 60932 I A00000/eu.europa.ec.euidi/CJTest: CJ_TEST_SUMMARY: passed=630 failed=0 error=0
+10-27 15:16:52.234 60932 60932 I C01330/eu.europa.ec.euidi/Delegator: [ability_delegator.cpp365]message: CJ_TEST_SUMMARY: passed=630 failed=0 error=0
+10-27 15:16:52.234 60966 60985 I C01303/aa/AATool: [test_observer.cpp43]enter, msg : CJ_TEST_SUMMARY: passed=630 failed=0 error=0, code : 0
+CJ_TEST_SUMMARY: passed=630 failed=0 error=0
+DEVICE TESTS PASSED
