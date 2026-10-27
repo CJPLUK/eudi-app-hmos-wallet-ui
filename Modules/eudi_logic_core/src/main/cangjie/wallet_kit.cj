@@ -394,7 +394,10 @@ public class WalletKitImpl <: WalletKit {
             WKBleTransferMode.Server,
             trustConfiguration: Option<TrustConfiguration>.Some(eudiWalletConfig.trustConfiguration)
         )
-        logTrustConfiguration(eudiWalletConfig.trustConfiguration)
+        // Trust anchors (LoTE) resolve lazily on first issuance / presentation.
+        // Do not touch them here: this runs on the UI thread during AppRoot
+        // setup, and a slow LoTE download blocked it long enough (> 6 s) for
+        // the system to kill the app at cold start.
         // Persistent encrypted RDB document store (mirrors iOS Keychain-backed
         // WalletStorage). Requires the UIAbilityContext bridged from the ETS
         // EntryAbility (see AppContextHolder). When the context is present we hand
@@ -826,21 +829,6 @@ func toWKIssuerMetadataPolicy(trustCfg: TrustConfiguration, requireSignedForWrpr
     match (trustCfg.defaultPolicy) {
         case TrustPolicy.Warning => WKIssuerMetadataPolicy.PreferSigned(trust)
         case TrustPolicy.Enforce => WKIssuerMetadataPolicy.RequireSigned(trust)
-    }
-}
-
-func logTrustConfiguration(cfg: TrustConfiguration): Unit {
-    // Diagnostic only. trustAnchorsDer() may pull LoTE over the network and
-    // throw when offline; keep it fail-soft so startup logging never crashes.
-    try {
-        let wrpac = cfg.accessTrustManager.trustAnchorsDer()
-        let prev = cfg.issuerTrustManager.docType
-        cfg.issuerTrustManager.docType = Some(MDOC_PID_DOCTYPE)
-        let pid = cfg.issuerTrustManager.trustAnchorsDer()
-        cfg.issuerTrustManager.docType = prev
-        Hilog.info(0, "LOTE", "pid=${pid.size} wrpac=${wrpac.size}")
-    } catch (e: Exception) {
-        Hilog.info(0, "LOTE", "trust anchor probe skipped at startup: ${e.message}")
     }
 }
 
