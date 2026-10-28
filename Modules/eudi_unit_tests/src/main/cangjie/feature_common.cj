@@ -205,8 +205,43 @@ func runRequestSelectionParityTests(t: DeviceTestRun): Unit {
     vm.setItems(relyingParty: "Verifier", relyingPartyIsTrusted: true, sections: sections)
     t.check(!vm.toggleSelection("required") && required.selected,
         "request.required_claim_cannot_toggle")
+    // iOS onCombinationItemClick: the first tap on a request with claim
+    // checkboxes only raises the incomplete-selection alert.
+    t.check(vm.viewState.showMissingCredentials && !vm.viewState.isIncompleteSelectionAlertShowing,
+        "request.incompleteSelection_initiallyArmed")
+    t.check(!vm.toggleSelection("optional") && optional.selected,
+        "request.incompleteSelection_firstTapDoesNotToggle")
+    t.check(vm.viewState.isIncompleteSelectionAlertShowing && !vm.viewState.showMissingCredentials,
+        "request.incompleteSelection_firstTapShowsAlert")
+    vm.dismissIncompleteSelectionAlert()
+    t.check(!vm.viewState.isIncompleteSelectionAlertShowing, "request.incompleteSelection_okDismisses")
     t.check(vm.toggleSelection("optional") && !optional.selected,
         "request.optional_claim_toggles")
+    t.check(!vm.viewState.isIncompleteSelectionAlertShowing, "request.incompleteSelection_shownOnlyOnce")
+
+    // Read-only rows (online presentation, no checkbox) never raise it.
+    let readOnly = RequestDataCell(groupId: Some("ro"), title: "Age over 18", value: "true", hasCheckbox: false)
+    let roCells = ArrayList<RequestDataCell>()
+    roCells.add(readOnly)
+    let roSections = ArrayList<RequestDataSection>()
+    roSections.add(RequestDataSection(id: "age", title: "Age", cells: roCells))
+    let roVm = RequestViewModel(router: InMemoryRouterHost())
+    roVm.setItems(relyingParty: "Verifier", relyingPartyIsTrusted: true, sections: roSections)
+    t.check(!roVm.toggleSelection("ro") && !roVm.viewState.isIncompleteSelectionAlertShowing,
+        "request.incompleteSelection_readOnlyRowsNoAlert")
+
+    // Switching combination disarms it (iOS onCombinationSelected).
+    let combos = ArrayList<ArrayList<RequestDataSection>>()
+    combos.add(sections)
+    combos.add(sections)
+    let comboVm = RequestViewModel(router: InMemoryRouterHost())
+    comboVm.onReceivedCombinations(relyingParty: "Verifier", relyingPartyIsTrusted: true, combinations: combos)
+    comboVm.onCombinationSelected(1)
+    t.check(!comboVm.viewState.showMissingCredentials, "request.incompleteSelection_combinationSwitchDisarms")
+
+    // resetState re-arms it for the next request.
+    vm.resetState()
+    t.check(vm.viewState.showMissingCredentials, "request.incompleteSelection_resetRearms")
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

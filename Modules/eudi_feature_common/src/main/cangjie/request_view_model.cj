@@ -8,7 +8,9 @@
  *
  * Selection semantics migrated 1:1:
  *  - toggleSelection(groupId): flips only rows whose checkbox is enabled
- *    (`!isRequired && isAvailable` — iOS `guard isEnabled else break`).
+ *    (`!isRequired && isAvailable` — iOS `guard isEnabled else break`); the
+ *    first such tap only raises the incomplete-selection alert (iOS
+ *    `showMissingCredentials` / `itemsChanged`).
  *  - canShare(): at least one selected row exists (iOS Array.canShare()) AND
  *    the registration warning — when one is active — has been acknowledged
  *    (iOS `allowShare && (registrationWarning == nil || isRiskAcknowledged)`).
@@ -55,6 +57,11 @@ public class RequestViewState <: ViewState {
     public let isRiskAcknowledged: Bool
     /** iOS `initialized` — request payload received (setItems/onTrustBlocked). */
     public let initialized: Bool
+    /** iOS `showMissingCredentials`: true until the first claim tap or
+     *  combination switch, so only the first deselection raises the warning. */
+    public let showMissingCredentials: Bool
+    /** iOS `itemsChanged`: the "selection may impact the service" alert. */
+    public let isIncompleteSelectionAlertShowing: Bool
 
     public init(
         isLoading!: Bool = false,
@@ -68,7 +75,9 @@ public class RequestViewState <: ViewState {
         registrationWarning!: ?RegistrationWarning = None,
         isTrustBlockedAlertShowing!: Bool = false,
         isRiskAcknowledged!: Bool = false,
-        initialized!: Bool = false
+        initialized!: Bool = false,
+        showMissingCredentials!: Bool = true,
+        isIncompleteSelectionAlertShowing!: Bool = false
     ) {
         this.isLoading = isLoading
         this.hasError = hasError
@@ -82,6 +91,8 @@ public class RequestViewState <: ViewState {
         this.isTrustBlockedAlertShowing = isTrustBlockedAlertShowing
         this.isRiskAcknowledged = isRiskAcknowledged
         this.initialized = initialized
+        this.showMissingCredentials = showMissingCredentials
+        this.isIncompleteSelectionAlertShowing = isIncompleteSelectionAlertShowing
     }
 
     /**
@@ -101,7 +112,9 @@ public class RequestViewState <: ViewState {
         registrationWarning!: Option<Option<RegistrationWarning>> = Option<Option<RegistrationWarning>>.None,
         isTrustBlockedAlertShowing!: ?Bool = Option<Bool>.None,
         isRiskAcknowledged!: ?Bool = Option<Bool>.None,
-        initialized!: ?Bool = Option<Bool>.None
+        initialized!: ?Bool = Option<Bool>.None,
+        showMissingCredentials!: ?Bool = Option<Bool>.None,
+        isIncompleteSelectionAlertShowing!: ?Bool = Option<Bool>.None
     ): RequestViewState {
         let nextRegistration = match (relyingPartyRegistration) {
             case Some(v) => v
@@ -123,7 +136,9 @@ public class RequestViewState <: ViewState {
             registrationWarning: nextWarning,
             isTrustBlockedAlertShowing: isTrustBlockedAlertShowing ?? this.isTrustBlockedAlertShowing,
             isRiskAcknowledged: isRiskAcknowledged ?? this.isRiskAcknowledged,
-            initialized: initialized ?? this.initialized
+            initialized: initialized ?? this.initialized,
+            showMissingCredentials: showMissingCredentials ?? this.showMissingCredentials,
+            isIncompleteSelectionAlertShowing: isIncompleteSelectionAlertShowing ?? this.isIncompleteSelectionAlertShowing
         )
     }
 
@@ -202,7 +217,8 @@ public class RequestViewModel <: BaseViewModel<RequestViewState> {
         this.setState({ s =>
             s.copyWith(
                 sections: Some(s.combinations[index]),
-                selectedCombinationIndex: Some(index)
+                selectedCombinationIndex: Some(index),
+                showMissingCredentials: Some(false)
             )
         })
     }
@@ -299,11 +315,21 @@ public class RequestViewModel <: BaseViewModel<RequestViewState> {
      * Flips the row matching `groupId` when its checkbox is enabled; locked
      * (required) and unavailable rows ignore the request. Returns whether a
      * change happened so the page can refresh its @State snapshot.
+     *
+     * iOS onCombinationItemClick: the FIRST tap on a request that has claim
+     * checkboxes does not toggle — it raises the incomplete-selection alert and
+     * clears `showMissingCredentials`; later taps toggle normally.
      */
     public func toggleSelection(groupId: String): Bool {
         for (section in this.viewState.sections) {
             for (cell in section.cells) {
                 if (cell.groupId == groupId && cell.selectable) {
+                    if (this.viewState.showMissingCredentials) {
+                        this.setState({ s =>
+                            s.copyWith(showMissingCredentials: Some(false), isIncompleteSelectionAlertShowing: Some(true))
+                        })
+                        return false
+                    }
                     cell.selected = !cell.selected
                     // Re-emit the state so the page listener refreshes.
                     this.setState({ s => s })
@@ -312,6 +338,11 @@ public class RequestViewModel <: BaseViewModel<RequestViewState> {
             }
         }
         return false
+    }
+
+    /** iOS incomplete-selection alert OK: just dismiss. */
+    public func dismissIncompleteSelectionAlert(): Unit {
+        this.setState({ s => s.copyWith(isIncompleteSelectionAlertShowing: Some(false)) })
     }
 
     /**

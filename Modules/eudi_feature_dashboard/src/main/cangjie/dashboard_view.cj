@@ -10,9 +10,9 @@
  * key AppRoutes.dashboard. The view owns a Tabs (bottom navigation) with
  * three TabContent items: Home / Documents / History.
  *
- * M1 scope: three tabs render their authentic empty states.
- * Revoked-document modal, deep-link handling, and toolbar actions are
- * deferred to post-logic-storage delivery.
+ * The dashboard layer also hosts the bottom sheets that must cover the tab
+ * bar: filters, "Documents issued" and the revoked-documents modal raised by
+ * the revocation worker (iOS DashboardView.sheetDialog).
  */
 package eudi_feature_dashboard
 
@@ -74,6 +74,12 @@ public class DashboardView {
     var showIssuedSheet: Bool = false
     @State
     var issuedRows: Array<DocumentRow> = Array<DocumentRow>()
+    // iOS `isRevokedModalShowing` + `viewState.revokedDocuments`: raised by the
+    // revocation worker's RevocationDashboard post.
+    @State
+    var showRevokedSheet: Bool = false
+    @State
+    var revokedRows: Array<RevokedDocumentRow> = Array<RevokedDocumentRow>()
 
     private var vm: ?DashboardViewModel = Option<DashboardViewModel>.None
     private var toolbarObserverRegistered: Bool = false
@@ -130,6 +136,18 @@ public class DashboardView {
             // refresh on issuance) so the shared bar's filter starts enabled when
             // the wallet already has rows — the "sort button stuck disabled" fix.
             NotificationCenter.addObserver(NotificationName.DocumentTabRefresh, { _ => this.reloadToolbarCounts() })
+            // The revocation worker posts displayName -> id from its background
+            // loop, so hop to the UI thread before touching @State.
+            NotificationCenter.addObserver(NotificationName.RevocationDashboard, { n =>
+                match (n.map) {
+                    case Some(m) =>
+                        let rows = revokedRowsFrom(m)
+                        spawn(UIThread) {
+                            => this.handleRevocationNotification(rows)
+                        }
+                    case None => ()
+                }
+            })
         }
         model.onCreate()
         this.reloadToolbarCounts()
@@ -312,6 +330,20 @@ public class DashboardView {
         }
     }
 
+    /** iOS handleRevocationNotification: ignored while the modal is already up or the dashboard is paused. */
+    private func handleRevocationNotification(rows: Array<RevokedDocumentRow>): Unit {
+        if (rows.size == 0 || this.showRevokedSheet || this.isPaused) {
+            return
+        }
+        this.revokedRows = rows
+        this.showRevokedSheet = true
+    }
+
+    private func dismissRevokedSheet(): Unit {
+        this.showRevokedSheet = false
+        this.revokedRows = Array<RevokedDocumentRow>()
+    }
+
     private func dismissIssuedSheet(): Unit {
         this.showIssuedSheet = false
         this.issuedRows = Array<DocumentRow>()
@@ -373,6 +405,77 @@ public class DashboardView {
                             })
                         },
                         keyGenerator: { row: DocumentRow, _: Int64 => "issued_" + row.id }
+                    )
+                }
+                .width(100.percent)
+                .padding(top: SPACING_MEDIUM, right: 0.0, bottom: SPACING_MEDIUM, left: 0.0)
+            }
+            .width(100.percent)
+            .padding(SPACING_LARGE)
+            .backgroundColor(uiColor(ThemeManager.shared.color.background))
+            .borderRadius(topLeft: 24.0, topRight: 24.0, bottomLeft: 0.0, bottomRight: 0.0)
+            .transition(TransitionEffect.move(TransitionEdge.Bottom).animation(AnimateParam(duration: 250, curve: Curve.EaseInOut)))
+        }
+        .width(100.percent)
+        .height(100.percent)
+    }
+
+    /**
+     * "Revoked documents" bottom sheet — mirrors iOS DashboardView.sheetDialog
+     * (ContentTitleView + revokedNotificationList). A row opens the document
+     * details, closing the sheet first (iOS onDocumentDetails).
+     */
+    @Builder
+    private func revokedSheet() {
+        Stack(alignContent: Alignment.Bottom) {
+            Column() {}
+                .width(100.percent)
+                .height(100.percent)
+                .backgroundColor(Color(EUDI_SCRIM_COLOR))
+                .transition(TransitionEffect.OPACITY.animation(AnimateParam(duration: 250, curve: Curve.EaseInOut)))
+                .onClick({ _ => this.dismissRevokedSheet() })
+            Column(space: SPACING_SMALL) {
+                Text(LocalizableManager.get(LocalizableStringKey.revokedModalTitle))
+                    .fontSize(uiFontSize(ThemeManager.shared.font.headlineMedium))
+                    .fontWeight(FontWeight.Bold)
+                    .fontColor(uiColor(ThemeManager.shared.color.primaryLabel))
+                    .width(100.percent)
+                    .textAlign(TextAlign.Start)
+                Text(LocalizableManager.get(LocalizableStringKey.revokedModalDescription))
+                    .fontSize(uiFontSize(ThemeManager.shared.font.bodyMedium))
+                    .fontColor(uiColor(ThemeManager.shared.color.secondaryLabel))
+                    .width(100.percent)
+                    .textAlign(TextAlign.Start)
+                Column(space: SPACING_SMALL) {
+                    ForEach(
+                        this.revokedRows,
+                        itemGenerator: { row: RevokedDocumentRow, _: Int64 =>
+                            Row {
+                                Text(row.name)
+                                    .fontSize(uiFontSize(ThemeManager.shared.font.bodyLarge))
+                                    .fontColor(uiColor(ThemeManager.shared.color.primaryLabel))
+                                    .layoutWeight(1)
+                                    .textAlign(TextAlign.Start)
+                                Image(appImageSrc(ThemeManager.shared.image.chevronRight))
+                                    .width(16.0)
+                                    .height(16.0)
+                                    .objectFit(ImageFit.Contain)
+                                    .fillColor(uiColor(ThemeManager.shared.color.accent))
+                            }
+                            .width(100.percent)
+                            .padding(SPACING_MEDIUM)
+                            .backgroundColor(uiColor(ThemeManager.shared.color.groupedBackground))
+                            .borderRadius(8.0)
+                            .onClick({ _ =>
+                                let id = row.id
+                                this.dismissRevokedSheet()
+                                match (this.vm) {
+                                    case Some(model) => model.onDocumentDetails(id)
+                                    case None => ()
+                                }
+                            })
+                        },
+                        keyGenerator: { row: RevokedDocumentRow, _: Int64 => "revoked_" + row.id }
                     )
                 }
                 .width(100.percent)
@@ -451,6 +554,9 @@ public class DashboardView {
                 if (this.showIssuedSheet) {
                     this.issuedSheet()
                 }
+                if (this.showRevokedSheet) {
+                    this.revokedSheet()
+                }
             }
             .width(100.percent)
             .height(100.percent)
@@ -461,6 +567,27 @@ public class DashboardView {
         // does nothing). Without this, Back unwound to the dead-end splash.
         .onBackPressed({ => true })
     }
+}
+
+/** One row of the revoked-documents sheet (iOS `revokedDocuments` entry: displayName -> id). */
+public class RevokedDocumentRow {
+    public let name: String
+    public let id: String
+
+    public init(name: String, id: String) {
+        this.name = name
+        this.id = id
+    }
+}
+
+/** iOS lists `revokedDocuments.sorted(by: >)`: descending by display name. */
+public func revokedRowsFrom(map: HashMap<String, String>): Array<RevokedDocumentRow> {
+    let rows = ArrayList<RevokedDocumentRow>()
+    for ((name, id) in map) {
+        rows.add(RevokedDocumentRow(name, id))
+    }
+    rows.sortBy(stable: true, comparator: { a: RevokedDocumentRow, b: RevokedDocumentRow => b.name.compare(a.name) })
+    return rows.toArray()
 }
 
 /**

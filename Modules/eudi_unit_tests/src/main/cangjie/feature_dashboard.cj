@@ -47,6 +47,8 @@ import eudi_feature_dashboard.{
     DocumentDetails,
     TransactionDetails,
     TransactionDetailsViewModel,
+    DocumentDetailsViewModel,
+    RevokedDocumentRow, revokedRowsFrom,
     DashboardViewModel,
     CredentialUsageInfo,
     DeferredIssuanceOutcome,
@@ -990,6 +992,65 @@ func runDocumentDetailsInteractorTests(t: DeviceTestRun): Unit {
     t.eqInt(fake20.clearAllDocumentsCalls, 0, "docDetails.deleteDocument_forcePidDisabled_noClearAll")
 }
 
+// ─── DocumentDetailsViewModel bookmark (iOS DocumentDetailsViewModel.saveBookmark) ──
+
+func runDocumentDetailsBookmarkTests(t: DeviceTestRun): Unit {
+    // Not bookmarked → toggle stores it, flips the state and raises the alert.
+    let fake = FakeWalletKitController()
+    fake.documentById = Some(makeDocClaimsDecodable(id: "pid-bm"))
+    fake.bookmarkedResult = false
+    let vm = DocumentDetailsViewModel(router: InMemoryRouterHost(), interactor: DashboardInteractor(walletController: fake),
+        documentId: "pid-bm")
+    vm.fetchDetails()
+    t.check(!vm.viewState.isBookmarked, "docDetailsVm.bookmark_seededFalse")
+    vm.toggleBookmark()
+    t.eqInt(fake.storeBookmarkedDocumentCalls, 1, "docDetailsVm.bookmark_save_storeCalled")
+    t.check(vm.viewState.isBookmarked, "docDetailsVm.bookmark_save_flipsTrue")
+    t.check(vm.viewState.isBookmarkAlertShowing, "docDetailsVm.bookmark_save_alertShown")
+    vm.dismissBookmarkAlert()
+    t.check(!vm.viewState.isBookmarkAlertShowing && vm.viewState.isBookmarked,
+        "docDetailsVm.bookmark_dismiss_keepsBookmarked")
+    // Bookmarked → toggle removes it.
+    vm.toggleBookmark()
+    t.eqInt(fake.removeBookmarkedDocumentCalls, 1, "docDetailsVm.bookmark_remove_removeCalled")
+    t.check(!vm.viewState.isBookmarked && vm.viewState.isBookmarkAlertShowing,
+        "docDetailsVm.bookmark_remove_flipsFalse")
+
+    // Seeded from storage when already bookmarked.
+    let fakeSeeded = FakeWalletKitController()
+    fakeSeeded.documentById = Some(makeDocClaimsDecodable(id: "pid-bm-seed"))
+    fakeSeeded.bookmarkedResult = true
+    let vmSeeded = DocumentDetailsViewModel(router: InMemoryRouterHost(),
+        interactor: DashboardInteractor(walletController: fakeSeeded), documentId: "pid-bm-seed")
+    vmSeeded.fetchDetails()
+    t.check(vmSeeded.viewState.isBookmarked, "docDetailsVm.bookmark_seededTrue")
+
+    // Storage failure leaves the state untouched and shows no alert (iOS swallows it).
+    let fakeFail = ThrowingBookmarkWalletKit()
+    fakeFail.documentById = Some(makeDocClaimsDecodable(id: "pid-bm-fail"))
+    let vmFail = DocumentDetailsViewModel(router: InMemoryRouterHost(),
+        interactor: DashboardInteractor(walletController: fakeFail), documentId: "pid-bm-fail")
+    vmFail.fetchDetails()
+    vmFail.toggleBookmark()
+    t.check(!vmFail.viewState.isBookmarked && !vmFail.viewState.isBookmarkAlertShowing,
+        "docDetailsVm.bookmark_failure_stateUnchanged")
+}
+
+// ─── Revoked-documents modal rows (iOS revokedDocuments.sorted(by: >)) ───────
+
+func runRevokedModalRowsTests(t: DeviceTestRun): Unit {
+    let map = HashMap<String, String>()
+    map.add("Driving License", "mdl-1")
+    map.add("PID", "pid-1")
+    map.add("Age Verification", "age-1")
+    let rows = revokedRowsFrom(map)
+    t.eqInt(rows.size, 3, "revokedModal.rows_oneRowPerDocument")
+    t.check(rows[0].name == "PID" && rows[1].name == "Driving License" && rows[2].name == "Age Verification",
+        "revokedModal.rows_sortedDescendingByName")
+    t.check(rows[0].id == "pid-1" && rows[2].id == "age-1", "revokedModal.rows_keepDocumentId")
+    t.eqInt(revokedRowsFrom(HashMap<String, String>()).size, 0, "revokedModal.rows_emptyMap")
+}
+
 // ─── TestTransactionTabInteractor (15 iOS cases) ─────────────────────────────
 
 func runTransactionTabInteractorTests(t: DeviceTestRun): Unit {
@@ -1774,6 +1835,8 @@ func runFeatureDashboardTests(t: DeviceTestRun): Unit {
     runDashboardInteractorTests(t)
     runDocumentTabInteractorTests(t)
     runDocumentDetailsInteractorTests(t)
+    runDocumentDetailsBookmarkTests(t)
+    runRevokedModalRowsTests(t)
     runTransactionTabInteractorTests(t)
     runSettingsInteractorTests(t)
     runHomeTabInteractorTests(t)

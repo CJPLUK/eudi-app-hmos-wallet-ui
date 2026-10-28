@@ -8,7 +8,7 @@
  * DocumentDetailsViewModel.swift) to Cangjie.
  *
  * Shows a single issued document, mirroring the iOS layout top-to-bottom:
- *  - toolbar (back + overflow menu → reissue / remove)
+ *  - toolbar (back + bookmark toggle + overflow menu → reissue / remove)
  *  - largeTitle document name
  *  - "ISSUER DETAILS" section: an expandable issuer card (logo + name +
  *    "View details" / expiry, expanded body = issued/revoked message + reissue)
@@ -90,6 +90,12 @@ public class DocumentDetailsView {
      *  registration is blocked. */
     @State
     var showTrustBlockedAlert: Bool = false
+    /** iOS `viewState.isBookmarked`: filled / outline bookmark in the toolbar. */
+    @State
+    var isBookmarked: Bool = false
+    /** iOS `showBookmarkAlert`: "Saved to / Removed from favorites". */
+    @State
+    var showBookmarkAlert: Bool = false
     /** Latch so rapid Confirm taps cannot double-delete / double-pop. */
     private var deleteInFlight: Bool = false
 
@@ -104,6 +110,8 @@ public class DocumentDetailsView {
                         =>
                         this.isLoading = state.isLoading
                         this.showTrustBlockedAlert = state.isTrustBlockedAlertShowing
+                        this.isBookmarked = state.isBookmarked
+                        this.showBookmarkAlert = state.isBookmarkAlertShowing
                         match (state.details) {
                             case Some(d) =>
                                 this.hasDocument = true
@@ -197,6 +205,24 @@ public class DocumentDetailsView {
         }
     }
 
+    private func toggleBookmark(): Unit {
+        match (this.vm) {
+            case Some(model) =>
+                spawn {
+                    =>
+                    model.toggleBookmark()
+                }
+            case None => ()
+        }
+    }
+
+    private func onBookmarkAlertClose(): Unit {
+        match (this.vm) {
+            case Some(model) => model.dismissBookmarkAlert()
+            case None => ()
+        }
+    }
+
     private func onTrustBlockedClose(): Unit {
         match (this.vm) {
             case Some(model) => model.dismissTrustBlockedAlert()
@@ -250,6 +276,18 @@ public class DocumentDetailsView {
                         onDismiss: { => this.showDeleteDialog = false }
                     )
                 }
+                // iOS alertView(bookmarkAlertTitle/bookmarkAlertMessage): the
+                // state is already flipped, so it names what just happened.
+                if (this.showBookmarkAlert) {
+                    AlertView(
+                        title: if (this.isBookmarked) { LocalizableStringKey.savedToFavorites } else { LocalizableStringKey.removedFromFavorites },
+                        message: if (this.isBookmarked) { LocalizableStringKey.savedToFavoritesMessage } else { LocalizableStringKey.removedFromFavoritesMessages },
+                        actions: [
+                            AlertAction(title: LocalizableStringKey.close, callback: { => this.onBookmarkAlertClose() })
+                        ],
+                        onDismiss: { => this.onBookmarkAlertClose() }
+                    )
+                }
                 // iOS alertView(.issuanceBlockedTitle/.issuanceBlockedMessage):
                 // the re-issuance was refused — single Close, no retry.
                 if (this.showTrustBlockedAlert) {
@@ -296,6 +334,26 @@ public class DocumentDetailsView {
                 // iOS centers the inline nav title (back ‹ and menu ⋮ flank it).
                 .textAlign(TextAlign.Center)
                 .maxLines(1)
+            // Bookmark toggle (iOS bookmark / bookmark.fill trailing action).
+            if (this.hasDocument) {
+                Row {
+                    Image(appImageSrc(if (this.isBookmarked) {
+                        ThemeManager.shared.image.bookmarkIconFill
+                    } else {
+                        ThemeManager.shared.image.bookmarkIcon
+                    }))
+                        .width(22.0)
+                        .height(22.0)
+                        .objectFit(ImageFit.Contain)
+                }
+                .width(40.0)
+                .height(40.0)
+                .justifyContent(FlexAlign.Center)
+                .borderRadius(20.0)
+                .backgroundColor(uiColor(ThemeManager.shared.color.secondaryGroupedBackground))
+                .shadow(radius: 8.0, color: uiColor(ThemeManager.shared.color.tertiaryLabel), offsetX: 0.0, offsetY: 2.0)
+                .onClick({ _ => this.toggleBookmark() })
+            }
             // Overflow menu (iOS ellipsis.vertical → reissue / remove).
             Row {
                 Text("⋮")

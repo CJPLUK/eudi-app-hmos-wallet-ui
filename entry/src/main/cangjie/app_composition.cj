@@ -65,7 +65,7 @@ import eudi_feature_rqes.{
 import ohos_app_cangjie_eudi_cjrqes_ui.{EudiRQESUi, makeRQESInteractor}
 import ohos.app.ability.want.Want
 import eudi_feature_common.{ScannerUiConfig, ScannerFlow, DocumentSuccessUIConfig}
-import eudi_logic_core.{WalletKitController, RemoteSessionCoordinator, ProximitySessionCoordinator, HuksKeyChainController, AppContextHolder}
+import eudi_logic_core.{WalletKitController, RevocationWorkManager, RemoteSessionCoordinator, ProximitySessionCoordinator, HuksKeyChainController, AppContextHolder}
 import eudi_logic_assembly.LogicAssembly
 import eudi_logic_authentication.{LogicAuthAssembly, PinThrottleController}
 
@@ -116,6 +116,8 @@ public class AppComposition {
      * logic-core graph). Consumed by the feature-issuance interactors.
      */
     private let walletController: WalletKitController
+    /** Background revocation check, started with the graph (iOS AppDelegate). */
+    private let revocationWorkManager: RevocationWorkManager
 
     /** StartupViewModel — singleton because Startup is the root page. */
     public let startupViewModel: StartupViewModel
@@ -207,10 +209,13 @@ public class AppComposition {
         // backs the ACCESS_BLUETOOTH runtime prompt and the Bluetooth settings
         // deep link of the in-person entry path.
         this.reachabilityController = createReachabilityController({ => AppContextHolder.get() })
-        this.walletController = AppComposition.buildWalletController(
-            this.configLogic,
-            this.prefsController
-        )
+        let logicAssembly = LogicAssembly(configLogic: this.configLogic, prefsController: this.prefsController)
+        this.walletController = logicAssembly.resolveWalletController()
+        // iOS AppDelegate.initializeWorkers: the revocation check runs in the
+        // background from launch (first pass after its initial delay) and posts
+        // RevocationDashboard, which the dashboard turns into the revoked modal.
+        this.revocationWorkManager = logicAssembly.resolveRevocationWorkManager()
+        this.revocationWorkManager.start()
         let interactor: StartupInteractor = StartupInteractorImpl(
             pinStore: this.pinStore,
             prefsController: this.prefsController,
@@ -218,24 +223,6 @@ public class AppComposition {
             walletController: this.walletController
         )
         this.startupViewModel = StartupViewModel(router: this.router, interactor: interactor)
-    }
-
-    /**
-     * Resolves the WalletKitController by delegating to the logic-assembly
-     * composition root (LogicAssembly.resolveWalletController), which owns the
-     * UI-independent half of the DI graph — mirroring iOS DIGraph+Extensions
-     * assembleDependenciesGraph. The entry keeps only the RouterHost wiring
-     * (NavPathStack-bound), exactly as iOS keeps RouterHostImpl bound to the
-     * SwiftUI navigation path.
-     */
-    private static func buildWalletController(
-        configLogic: ConfigLogic,
-        prefsController: PrefsController
-    ): WalletKitController {
-        return LogicAssembly(
-            configLogic: configLogic,
-            prefsController: prefsController
-        ).resolveWalletController()
     }
 
     /**

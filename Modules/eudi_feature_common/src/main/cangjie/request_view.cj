@@ -100,6 +100,8 @@ public class BaseRequestView {
     var riskAcknowledged: Bool = false
     @State
     var showTrustBlockedAlert: Bool = false
+    @State
+    var showIncompleteSelectionAlert: Bool = false
     /** Per-section collapse state, keyed by stable document id. HashMap is
      *  used instead of Array<Bool>: ArkUI tracks a freshly assigned map from
      *  inside a ForEach item generator, while indexed array reads remained
@@ -144,6 +146,7 @@ public class BaseRequestView {
         this.relyingPartyTrusted = state.relyingPartyIsTrusted
         this.riskAcknowledged = state.isRiskAcknowledged
         this.showTrustBlockedAlert = state.isTrustBlockedAlertShowing
+        this.showIncompleteSelectionAlert = state.isIncompleteSelectionAlertShowing
         this.syncRegistration(state)
         match (this.vm) {
             case Some(model) =>
@@ -303,6 +306,22 @@ public class BaseRequestView {
         return cell.value
     }
 
+    private func handleIncompleteSelectionClose(): Unit {
+        match (this.vm) {
+            case Some(model) => model.dismissIncompleteSelectionAlert()
+            case None => ()
+        }
+    }
+
+    private func incompleteSelectionActions(): Array<AlertAction> {
+        [
+            AlertAction(
+                title: LocalizableStringKey.okButton,
+                callback: { => this.handleIncompleteSelectionClose() }
+            )
+        ]
+    }
+
     private func trustBlockedActions(): Array<AlertAction> {
         [
             AlertAction(
@@ -389,6 +408,14 @@ public class BaseRequestView {
                     message: LocalizableStringKey.presentationBlockedMessage,
                     actions: this.trustBlockedActions(),
                     onDismiss: { => this.handleTrustBlockedClose() }
+                )
+            }
+            if (this.showIncompleteSelectionAlert) {
+                // iOS itemsChanged alertView: empty title, OK only.
+                AlertView(
+                    message: LocalizableStringKey.incompleteRequestDataSelection,
+                    actions: this.incompleteSelectionActions(),
+                    onDismiss: { => this.handleIncompleteSelectionClose() }
                 )
             }
         }

@@ -24,15 +24,23 @@ public class DocumentDetailsState <: ViewState {
      *  `isTrustBlockedAlertShowing`): the re-issuance was refused because the
      *  issuer could not be verified or its registration is blocked. */
     public let isTrustBlockedAlertShowing: Bool
+    /** iOS `viewState.isBookmarked`: seeded from the stored document, flipped by toggleBookmark. */
+    public let isBookmarked: Bool
+    /** iOS `showBookmarkAlert`: the "Saved to / Removed from favorites" alert. */
+    public let isBookmarkAlertShowing: Bool
 
     public init(
         details!: ?DocumentDetails = Option<DocumentDetails>.None,
         isLoading!: Bool = true,
-        isTrustBlockedAlertShowing!: Bool = false
+        isTrustBlockedAlertShowing!: Bool = false,
+        isBookmarked!: Bool = false,
+        isBookmarkAlertShowing!: Bool = false
     ) {
         this.details = details
         this.isLoading = isLoading
         this.isTrustBlockedAlertShowing = isTrustBlockedAlertShowing
+        this.isBookmarked = isBookmarked
+        this.isBookmarkAlertShowing = isBookmarkAlertShowing
     }
 }
 
@@ -50,7 +58,44 @@ public class DocumentDetailsViewModel <: BaseViewModel<DocumentDetailsState> {
     /** Blocking; view wraps in spawn{}. Mirrors fetchDocumentDetails(). */
     public func fetchDetails(): Unit {
         let result = this.interactor.fetchDocumentDetails(this.documentId)
-        this.setState({ _ => DocumentDetailsState(details: result, isLoading: false) })
+        let bookmarked = match (result) {
+            case Some(d) => d.isBookmarked
+            case None => false
+        }
+        this.setState({ _ => DocumentDetailsState(details: result, isLoading: false, isBookmarked: bookmarked) })
+    }
+
+    /**
+     * Blocking; view wraps in spawn{}. Mirrors iOS saveBookmark(_:): stores or
+     * removes the bookmark, flips the state and raises the favorites alert. A
+     * storage failure leaves the state untouched, as iOS swallows the error.
+     */
+    public func toggleBookmark(): Unit {
+        let wasBookmarked = this.viewState.isBookmarked
+        let ok = if (wasBookmarked) {
+            this.interactor.deleteBookmark(this.documentId)
+        } else {
+            this.interactor.saveBookmark(this.documentId)
+        }
+        if (!ok) {
+            return
+        }
+        this.setState({ s =>
+            DocumentDetailsState(
+                details: s.details, isLoading: s.isLoading, isTrustBlockedAlertShowing: s.isTrustBlockedAlertShowing,
+                isBookmarked: !wasBookmarked, isBookmarkAlertShowing: true
+            )
+        })
+    }
+
+    /** iOS favorites alert Close. */
+    public func dismissBookmarkAlert(): Unit {
+        this.setState({ s =>
+            DocumentDetailsState(
+                details: s.details, isLoading: s.isLoading, isTrustBlockedAlertShowing: s.isTrustBlockedAlertShowing,
+                isBookmarked: s.isBookmarked
+            )
+        })
     }
 
     /**
@@ -78,7 +123,10 @@ public class DocumentDetailsViewModel <: BaseViewModel<DocumentDetailsState> {
             case ReIssueSuccess => this.fetchDetails()
             case ReIssueIssuerNotTrusted =>
                 this.setState({ s =>
-                    DocumentDetailsState(details: s.details, isLoading: false, isTrustBlockedAlertShowing: true)
+                    DocumentDetailsState(
+                        details: s.details, isLoading: false, isTrustBlockedAlertShowing: true,
+                        isBookmarked: s.isBookmarked
+                    )
                 })
             case ReIssueFailure(_) => ()
         }
@@ -87,7 +135,7 @@ public class DocumentDetailsViewModel <: BaseViewModel<DocumentDetailsState> {
 
     /** iOS trust-blocked alert Close: just dismiss. */
     public func dismissTrustBlockedAlert(): Unit {
-        this.setState({ s => DocumentDetailsState(details: s.details, isLoading: false) })
+        this.setState({ s => DocumentDetailsState(details: s.details, isLoading: false, isBookmarked: s.isBookmarked) })
     }
 
     public func onBack(): Unit {

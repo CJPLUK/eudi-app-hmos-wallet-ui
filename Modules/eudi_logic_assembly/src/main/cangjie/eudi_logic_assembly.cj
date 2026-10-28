@@ -30,7 +30,7 @@
 package eudi_logic_assembly
 
 import eudi_logic_business.{ConfigLogic, PrefsController}
-import eudi_logic_core.{WalletKitController, LogicCoreAssembly}
+import eudi_logic_core.{WalletKitController, LogicCoreAssembly, RevocationWorkManager}
 import eudi_logic_storage.{
     createStorageConfig,
     createBookmarkStorageController,
@@ -51,6 +51,7 @@ import eudi_logic_api.{makeNetworkSessionProvider, makeDefaultWalletAttestationR
 public class LogicAssembly {
     private let configLogic: ConfigLogic
     private let prefsController: PrefsController
+    private var cachedLogicCore: ?LogicCoreAssembly = None
 
     public init(configLogic!: ConfigLogic, prefsController!: PrefsController) {
         this.configLogic = configLogic
@@ -64,18 +65,37 @@ public class LogicAssembly {
      * here keeps the DI graph in one place (iOS DIGraph+Extensions parity).
      */
     public func resolveWalletController(): WalletKitController {
-        let storageConfig = createStorageConfig()
-        let assembly = LogicCoreAssembly(
-            this.configLogic,
-            this.prefsController,
-            storageConfig.storageDir,
-            createBookmarkStorageController(storageConfig),
-            createTransactionLogStorageController(storageConfig),
-            createRevokedDocumentStorageController(storageConfig),
-            createFailedReIssuedDocStorageController(storageConfig),
-            makeDefaultWalletAttestationRepository(),
-            makeNetworkSessionProvider()
-        )
-        return assembly.resolveWalletKitController()
+        return this.logicCore().resolveWalletKitController()
+    }
+
+    /**
+     * The revocation worker over the SAME WalletKitController the features use
+     * (iOS resolves both from one DIGraph); AppDelegate.initializeWorkers starts it.
+     */
+    public func resolveRevocationWorkManager(): RevocationWorkManager {
+        return this.logicCore().resolveRevocationWorkManager()
+    }
+
+    // One logic-core graph per LogicAssembly, so the wallet controller and the
+    // workers share storage and the cached engine instance.
+    private func logicCore(): LogicCoreAssembly {
+        match (this.cachedLogicCore) {
+            case Some(a) => return a
+            case None =>
+                let storageConfig = createStorageConfig()
+                let assembly = LogicCoreAssembly(
+                    this.configLogic,
+                    this.prefsController,
+                    storageConfig.storageDir,
+                    createBookmarkStorageController(storageConfig),
+                    createTransactionLogStorageController(storageConfig),
+                    createRevokedDocumentStorageController(storageConfig),
+                    createFailedReIssuedDocStorageController(storageConfig),
+                    makeDefaultWalletAttestationRepository(),
+                    makeNetworkSessionProvider()
+                )
+                this.cachedLogicCore = Some(assembly)
+                return assembly
+        }
     }
 }
