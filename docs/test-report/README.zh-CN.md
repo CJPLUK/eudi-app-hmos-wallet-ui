@@ -1,14 +1,14 @@
 # EUDI Wallet 鸿蒙仓颉版 · 测试报告
 
+中文 | [English](README.md)
+
 | 项 | 内容 |
 |---|---|
 | 被测项目 | `eudi-app-hmos-wallet-ui` |
 | 被测版本 | `c8d48ce`（含 14 个三方库 submodule） |
 | 参照基准 | iOS 参考实现 `eudi-app-ios-wallet-ui` `95b71766` |
 | 测试设备 | HUAWEI Mate 60 Pro，HarmonyOS 6.1.0.125 |
-| 测试日期 | 2026-10-27 至 2026-10-28 |
-| 测试负责 | CJPLUK |
-| 原始记录 | [records/](records/)（宿主与设备测试输出、测试环境） |
+
 
 > **结论：测试通过。** 功能实现率 98.1%：iOS 参考实现的 54 个用户功能点中实现 53 个，30 个页面中实现 28 个。单元测试与端到端测试全部通过，iOS 368 个测试用例中适用的 364 个均有对应测试并通过。
 
