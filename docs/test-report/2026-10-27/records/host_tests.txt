@@ -1,145 +1,24 @@
 ═══ cjpm test (host) :: eudi_logic_business ═══
 Warning: the current platform is 'aarch64-apple-darwin', the '--target' option will be ignored
-warning: unused import 'std.convert.*'
-  ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/form_validator.cj:22:1:
-   | 
-22 | import std.convert.*
-   | ^^^^^^^^^^^^^^^^^^^^ unused import
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-warning: unused import 'std.collection.ArrayList'
-  ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:18:1:
-   | 
-18 | import std.collection.ArrayList
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unused import
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:141:38:
-    | 
-141 |         return date.year * 12 + date.monthValue
-    |                                      ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:231:59:
-    | 
-231 |         return DateTime.of(year: local.year, month: local.monthValue, dayOfMonth: local.dayOfMonth)
-    |                                                           ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:239:26:
-    | 
-239 |             month: local.monthValue,
-    |                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:251:41:
-    | 
-251 |         return la.year == lb.year && la.monthValue == lb.monthValue && la.dayOfMonth == lb.dayOfMonth
-    |                                         ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:251:58:
-    | 
-251 |         return la.year == lb.year && la.monthValue == lb.monthValue && la.dayOfMonth == lb.dayOfMonth
-    |                                                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:255:26:
-    | 
-255 |         let index = date.monthValue - 1
-    |                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:257:28:
-    | 
-257 |             return "${date.monthValue}"
-    |                            ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:263:26:
-    | 
-263 |         let index = date.monthValue - 1
-    |                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:265:28:
-    | 
-265 |             return "${date.monthValue}"
-    |                            ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:289:32:
-    | 
-289 |                 return "${date.monthValue}".padStart(2, padding: "0")
-    |                                ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:291:28:
-    | 
-291 |             return "${date.monthValue}"
-    |                            ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: function 'matcher' is deprecated. `Matcher` has been marked as deprecated.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_string.cj:177:26:
-    | 
-177 |             return regex.matcher(value).fullMatch().isSome()
-    |                          ^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: unused variable:'accessGroup'
-  ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/keychain.cj:50:35:
-   | 
-50 |     public init(service!: String, accessGroup!: String, storageDir!: String) {
-   |                                   ^^^^^^^^^^^ unused variable
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-15 warnings generated, 15 warnings printed.
 warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date_test.cj:46:28:
-   | 
+   |
 46 |         @Expect(startLocal.monthValue, local.monthValue)
    |                            ^ deprecated
-   | 
+   |
    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
 note: the warning occurs after the macro is expanded
   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date_test.cj:12:1:
-   | 
+   |
 12 |   @Test
    |  _^
 13 | | class DateUtilStartOfDayTest {
    | | ...
 67 | | }
    | |_^
-   | 
+   |
 note: the code after the macro is expanded as follows
-    | 
+    |
     |   /* 12.1 */@Attribute[TEST_GENERATED] class DateUtilStartOfDayTest <: TestClass {
     |  _^
     | | /* 12.2 */    @Attribute[TestCase_63]
@@ -148,7 +27,7 @@ note: the code after the macro is expanded as follows
     | | /* 12.5 */        let start = DateUtil.startOfDay(utc)
     | | /* 12.6 */        expectEqual("start <= utc", "true", start <= utc, true, isDelta: false)
     | | /* 12.7 */    }
-    | | /* 12.8 */    
+    | | /* 12.8 */
     | | /* 12.9 */    @Attribute[TestCase_64]
     | | /* 12.10 */    func startOfDayMatchesLocalCivilDateAndMidnight(): Unit {
     | | /* 12.11 */        let utc = DateTime.ofUTC(year: 2025, month: 12, dayOfMonth: 31, hour: 10, minute: 30, second: 0)
@@ -162,7 +41,7 @@ note: the code after the macro is expanded as follows
     | | /* 12.19 */        expectEqual("startLocal.minute", "0", startLocal.minute, 0, isDelta: false)
     | | /* 12.20 */        expectEqual("startLocal.second", "0", startLocal.second, 0, isDelta: false)
     | | /* 12.21 */    }
-    | | /* 12.22 */    
+    | | /* 12.22 */
     | | /* 12.23 */    @Attribute[TestCase_65]
     | | /* 12.24 */    func startOfDayIsIdempotent(): Unit {
     | | /* 12.25 */        let now = DateTime.now()
@@ -170,28 +49,28 @@ note: the code after the macro is expanded as follows
     | | /* 12.27 */        let twice = DateUtil.startOfDay(once)
     | | /* 12.28 */        expectEqual("once == twice", "true", once == twice, true, isDelta: false)
     | | /* 12.29 */    }
-    | | /* 12.30 */    
+    | | /* 12.30 */
     | | /* 12.31 */    @Attribute[TestCase_66]
     | | /* 12.32 */    func isSameDayUsesLocalCalendarDay(): Unit {
     | | /* 12.33 */        let now = DateTime.now()
     | | /* 12.34 */        expectEqual("DateUtil.isSameDay(now, DateUtil.startOfDay(now))", "true", DateUtil.isSameDay(now, DateUtil.startOfDay(now)), true, isDelta: false)
     | | /* 12.35 */        expectEqual("DateUtil.isSameDay(now, now.addDays(1))", "false", DateUtil.isSameDay(now, now.addDays(1)), false, isDelta: false)
     | | /* 12.36 */    }
-    | | /* 12.37 */    
+    | | /* 12.37 */
     | | /* 12.38 */    init() {
     | | /* 12.39 */    }
     | | /* 12.40 */    private func classConfiguration(): Configuration {
     | | /* 12.41 */        let configuration = Configuration()
-    | | /* 12.42 */        
+    | | /* 12.42 */
     | | /* 12.43 */        return configuration
     | | /* 12.44 */    }
     | | /* 12.45 */    public override func asTestSuite(): TestSuite {
-    | | /* 12.46 */        
+    | | /* 12.46 */
     | | /* 12.47 */        let suiteConfiguration = classConfiguration()
     | | /* 12.48 */        let suiteBuilder = TestSuite.builder("DateUtilStartOfDayTest").configure(suiteConfiguration)
-    | | /* 12.49 */        
+    | | /* 12.49 */
     | | /* 12.50 */        { => let caseConfig = Configuration()
-    | | /* 12.51 */            
+    | | /* 12.51 */
     | | /* 12.52 */            let startOfDayIsNotAfterInputEvenWithPositiveOffsetTestFunc = { => startOfDayIsNotAfterInputEvenWithPositiveOffset();() }
     | | /* 12.53 */            suiteBuilder.add(
     | | /* 12.54 */            UnitTestCase.create(
@@ -200,12 +79,12 @@ note: the code after the macro is expanded as follows
     | | /* 12.57 */            body: startOfDayIsNotAfterInputEvenWithPositiveOffsetTestFunc
     | | /* 12.58 */            )
     | | /* 12.59 */            )
-    | | /* 12.60 */            
+    | | /* 12.60 */
     | | /* 12.61 */        }()
-    | | /* 12.62 */        
-    | | /* 12.63 */        
+    | | /* 12.62 */
+    | | /* 12.63 */
     | | /* 12.64 */        { => let caseConfig = Configuration()
-    | | /* 12.65 */            
+    | | /* 12.65 */
     | | /* 12.66 */            let startOfDayMatchesLocalCivilDateAndMidnightTestFunc = { => startOfDayMatchesLocalCivilDateAndMidnight();() }
     | | /* 12.67 */            suiteBuilder.add(
     | | /* 12.68 */            UnitTestCase.create(
@@ -214,12 +93,12 @@ note: the code after the macro is expanded as follows
     | | /* 12.71 */            body: startOfDayMatchesLocalCivilDateAndMidnightTestFunc
     | | /* 12.72 */            )
     | | /* 12.73 */            )
-    | | /* 12.74 */            
+    | | /* 12.74 */
     | | /* 12.75 */        }()
-    | | /* 12.76 */        
-    | | /* 12.77 */        
+    | | /* 12.76 */
+    | | /* 12.77 */
     | | /* 12.78 */        { => let caseConfig = Configuration()
-    | | /* 12.79 */            
+    | | /* 12.79 */
     | | /* 12.80 */            let startOfDayIsIdempotentTestFunc = { => startOfDayIsIdempotent();() }
     | | /* 12.81 */            suiteBuilder.add(
     | | /* 12.82 */            UnitTestCase.create(
@@ -228,12 +107,12 @@ note: the code after the macro is expanded as follows
     | | /* 12.85 */            body: startOfDayIsIdempotentTestFunc
     | | /* 12.86 */            )
     | | /* 12.87 */            )
-    | | /* 12.88 */            
+    | | /* 12.88 */
     | | /* 12.89 */        }()
-    | | /* 12.90 */        
-    | | /* 12.91 */        
+    | | /* 12.90 */
+    | | /* 12.91 */
     | | /* 12.92 */        { => let caseConfig = Configuration()
-    | | /* 12.93 */            
+    | | /* 12.93 */
     | | /* 12.94 */            let isSameDayUsesLocalCalendarDayTestFunc = { => isSameDayUsesLocalCalendarDay();() }
     | | /* 12.95 */            suiteBuilder.add(
     | | /* 12.96 */            UnitTestCase.create(
@@ -242,9 +121,9 @@ note: the code after the macro is expanded as follows
     | | /* 12.99 */            body: isSameDayUsesLocalCalendarDayTestFunc
     | | /* 12.100 */            )
     | | /* 12.101 */            )
-    | | /* 12.102 */            
+    | | /* 12.102 */
     | | /* 12.103 */        }()
-    | | /* 12.104 */        
+    | | /* 12.104 */
     | | /* 12.105 */        return suiteBuilder.build()
     | | /* 12.106 */    }
     | | /* 12.107 */    private func inheritedFromClassAnnotatedByTestTemplate < T >(): TestSuite where T <: TestClass {
@@ -264,907 +143,475 @@ note: the code after the macro is expanded as follows
     | | /* 12.121 */}
     | | /* 12.122 */
     | |____________^
-    | 
+    |
 note: which is expanded as follows
-   | 
+   |
    | /* 12.16 */        expectEqual("startLocal.monthValue", "local.monthValue", startLocal.monthValue, local.monthValue, isDelta: false)
-   |                                                                                        ^^^^^^^^^^ 
-   | 
+   |                                                                                        ^^^^^^^^^^
+   |
 
 warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date_test.cj:46:46:
-   | 
+   |
 46 |         @Expect(startLocal.monthValue, local.monthValue)
    |                                              ^ deprecated
-   | 
+   |
    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
 note: the warning occurs after the macro is expanded
   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date_test.cj:12:1:
-   | 
+   |
 12 |   @Test
    |  _^
 13 | | class DateUtilStartOfDayTest {
    | | ...
 67 | | }
    | |_^
-   | 
+   |
 note: which is expanded as follows
-   | 
+   |
    | /* 12.16 */        expectEqual("startLocal.monthValue", "local.monthValue", startLocal.monthValue, local.monthValue, isDelta: false)
-   |                                                                                                          ^^^^^^^^^^ 
-   | 
+   |                                                                                                          ^^^^^^^^^^
+   |
 
 2 warnings generated, 2 warnings printed.
-[?25l[0J7[;r8
-[1F7[9999E8[0J7[;r8
-[1F7[9999E8[0J7[;r8
-[1F7[9999E8--------------------------------------------------------------------------------------------------
-TP: eudi_logic_business, time elapsed: 18506000 ns, RESULT:
-    TCS: AppBuildVariantResolutionTest, time elapsed: 688000 ns, RESULT:
-    [ PASSED ] CASE: declaredVariantIsUsed (172000 ns)
-    [ PASSED ] CASE: unrecognisedVariantFallsBackToDev (4000 ns)
-    [ PASSED ] CASE: emptyDeclarationFallsBackToDev (4000 ns)
+
+--------------------------------------------------------------------------------------------------
+TP: eudi_logic_business, time elapsed: 126344000 ns, RESULT:
+    TCS: AppBuildVariantResolutionTest, time elapsed: 1490000 ns, RESULT:
+    [ PASSED ] CASE: declaredVariantIsUsed (726000 ns)
+    [ PASSED ] CASE: unrecognisedVariantFallsBackToDev (5000 ns)
+    [ PASSED ] CASE: emptyDeclarationFallsBackToDev (5000 ns)
     [ PASSED ] CASE: failingReaderFallsBackToDev (20000 ns)
-    [ PASSED ] CASE: explicitArgumentStillWins (3000 ns)
-    TCS: FilterValidatorTest, time elapsed: 1506000 ns, RESULT:
-    [ PASSED ] CASE: testInitializeSetsAppliedGroups (42000 ns)
-    [ PASSED ] CASE: testInitializeThenApplyFiltersEmitsFilterApplyResult (23000 ns)
+    [ PASSED ] CASE: explicitArgumentStillWins (4000 ns)
+    TCS: FilterValidatorTest, time elapsed: 2672000 ns, RESULT:
+    [ PASSED ] CASE: testInitializeSetsAppliedGroups (237000 ns)
+    [ PASSED ] CASE: testInitializeThenApplyFiltersEmitsFilterApplyResult (27000 ns)
     [ PASSED ] CASE: testInitializeTwiceSameFiltersGroupCountPreserved (10000 ns)
-    [ PASSED ] CASE: testInitializeTwiceDifferentFiltersPreservesFirstSelection (16000 ns)
-    [ PASSED ] CASE: testUpdateListsThenApplyFiltersPreservesFilterCount (261000 ns)
-    [ PASSED ] CASE: testUpdateFilterSelectsCorrectItem (13000 ns)
-    [ PASSED ] CASE: testUpdateDateFiltersSelectsCorrectItem (8000 ns)
+    [ PASSED ] CASE: testInitializeTwiceDifferentFiltersPreservesFirstSelection (15000 ns)
+    [ PASSED ] CASE: testUpdateListsThenApplyFiltersPreservesFilterCount (245000 ns)
+    [ PASSED ] CASE: testUpdateFilterSelectsCorrectItem (14000 ns)
+    [ PASSED ] CASE: testUpdateDateFiltersSelectsCorrectItem (7000 ns)
     [ PASSED ] CASE: testApplyFiltersZeroSelectionsEmitsFilterApplyResult (7000 ns)
     [ PASSED ] CASE: testApplySearchNoMatchIsEmpty (8000 ns)
-    [ PASSED ] CASE: testApplySearchKeepsMatchingItems (5000 ns)
+    [ PASSED ] CASE: testApplySearchKeepsMatchingItems (6000 ns)
     [ PASSED ] CASE: testApplySearchSecondaryTextMatchesOneItem (11000 ns)
-    [ PASSED ] CASE: testUpdateSortOrderEmitsDescendingUpdate (4000 ns)
-    [ PASSED ] CASE: testResetFiltersRestoresDefaults (12000 ns)
-    [ PASSED ] CASE: testRevertFiltersEmitsUpdateResult (3000 ns)
-    [ PASSED ] CASE: testRevertFiltersAfterUpdateEmitsCorrectGroupCount (9000 ns)
-    [ PASSED ] CASE: testApplyFiltersReversibleMultipleSelectionEmitsResult (19000 ns)
-    [ PASSED ] CASE: testApplyFiltersReversibleSingleSelectionEmitsResult (8000 ns)
-    [ PASSED ] CASE: testUpdateFilterReversibleSingleSelectsItem (6000 ns)
-    [ PASSED ] CASE: testUpdateFilterReversibleMultiSelectsItem (5000 ns)
-    [ PASSED ] CASE: testApplyFiltersSingleSelectionNoSelectionReturnsOriginalList (3000 ns)
-    [ PASSED ] CASE: testApplyFiltersReversibleSingleNoSelectionReturnsOriginalList (6000 ns)
-    [ PASSED ] CASE: testApplyFiltersReversibleMultiNoSelectionReturnsOriginalList (6000 ns)
-    [ PASSED ] CASE: testInitializeTwiceReversibleSingleMergesSelections (8000 ns)
-    [ PASSED ] CASE: testInitializeTwiceReversibleMultipleMergesSelections (10000 ns)
-    [ PASSED ] CASE: testUpdateDateFiltersTransactionDateRangeSetsStartAndEnd (15000 ns)
-    [ PASSED ] CASE: testApplyFiltersReturnsAllWhenNoFilters (5000 ns)
-    [ PASSED ] CASE: testEngineEmitsApplyThenUpdateInOrder (6000 ns)
-    [ PASSED ] CASE: testEngineEmitsEveryOperationWithoutCoalescing (6000 ns)
-    TCS: FormValidatorTest, time elapsed: 13845000 ns, RESULT:
-    [ PASSED ] CASE: testValidateNotEmptyRule (21000 ns)
-    [ PASSED ] CASE: testValidateEmailRule (41000 ns)
-    [ PASSED ] CASE: testValidatePhoneNumberRule (997000 ns)
-    [ PASSED ] CASE: testValidatePhoneNumberRegionAwareness (121000 ns)
-    [ PASSED ] CASE: testValidatePhoneNumberExampleNumbers (9130000 ns)
-    [ PASSED ] CASE: testValidateRegexRuleBacktracksAcrossAlternatives (11000 ns)
-    [ PASSED ] CASE: testValidateStringMaxLengthRule (6000 ns)
-    [ PASSED ] CASE: testValidateStringMinLengthRule (4000 ns)
-    [ PASSED ] CASE: testValidateRegexRule (26000 ns)
-    [ PASSED ] CASE: testValidateStringRangeRule (4000 ns)
-    [ PASSED ] CASE: testValidateStringMatchRule (6000 ns)
+    [ PASSED ] CASE: testUpdateSortOrderEmitsDescendingUpdate (20000 ns)
+    [ PASSED ] CASE: testResetFiltersRestoresDefaults (34000 ns)
+    [ PASSED ] CASE: testRevertFiltersEmitsUpdateResult (9000 ns)
+    [ PASSED ] CASE: testRevertFiltersAfterUpdateEmitsCorrectGroupCount (19000 ns)
+    [ PASSED ] CASE: testApplyFiltersReversibleMultipleSelectionEmitsResult (37000 ns)
+    [ PASSED ] CASE: testApplyFiltersReversibleSingleSelectionEmitsResult (15000 ns)
+    [ PASSED ] CASE: testUpdateFilterReversibleSingleSelectsItem (13000 ns)
+    [ PASSED ] CASE: testUpdateFilterReversibleMultiSelectsItem (11000 ns)
+    [ PASSED ] CASE: testApplyFiltersSingleSelectionNoSelectionReturnsOriginalList (10000 ns)
+    [ PASSED ] CASE: testApplyFiltersReversibleSingleNoSelectionReturnsOriginalList (12000 ns)
+    [ PASSED ] CASE: testApplyFiltersReversibleMultiNoSelectionReturnsOriginalList (13000 ns)
+    [ PASSED ] CASE: testInitializeTwiceReversibleSingleMergesSelections (17000 ns)
+    [ PASSED ] CASE: testInitializeTwiceReversibleMultipleMergesSelections (23000 ns)
+    [ PASSED ] CASE: testUpdateDateFiltersTransactionDateRangeSetsStartAndEnd (28000 ns)
+    [ PASSED ] CASE: testApplyFiltersReturnsAllWhenNoFilters (10000 ns)
+    [ PASSED ] CASE: testEngineEmitsApplyThenUpdateInOrder (12000 ns)
+    [ PASSED ] CASE: testEngineEmitsEveryOperationWithoutCoalescing (12000 ns)
+    TCS: FormValidatorTest, time elapsed: 119431000 ns, RESULT:
+    [ PASSED ] CASE: testValidateNotEmptyRule (43000 ns)
+    [ PASSED ] CASE: testValidateEmailRule (71000 ns)
+    [ PASSED ] CASE: testValidatePhoneNumberRule (1585000 ns)
+    [ PASSED ] CASE: testValidatePhoneNumberRegionAwareness (252000 ns)
+    [ PASSED ] CASE: testValidatePhoneNumberExampleNumbers (86855000 ns)
+    [ PASSED ] CASE: testValidateRegexRuleBacktracksAcrossAlternatives (60000 ns)
+    [ PASSED ] CASE: testValidateStringMaxLengthRule (25000 ns)
+    [ PASSED ] CASE: testValidateStringMinLengthRule (10000 ns)
+    [ PASSED ] CASE: testValidateRegexRule (65000 ns)
+    [ PASSED ] CASE: testValidateStringRangeRule (6000 ns)
+    [ PASSED ] CASE: testValidateStringMatchRule (7000 ns)
     [ PASSED ] CASE: testValidateStringNotMatchRule (6000 ns)
-    [ PASSED ] CASE: testValidateDuplicateCharacterNotInConsecutiveOrderRule (9000 ns)
-    [ PASSED ] CASE: testValidateNumericNotInConsecutiveSequenceOrderRule (17000 ns)
-    [ PASSED ] CASE: testValidateMultipleForms (44000 ns)
-    [ PASSED ] CASE: testValidateMaximumAmountRule (7000 ns)
-    [ PASSED ] CASE: testValidateMinimumAmountRule (5000 ns)
-    [ PASSED ] CASE: testValidateNoWhiteSpaces (6000 ns)
-    [ PASSED ] CASE: testValidateUrl (2450000 ns)
-    [ PASSED ] CASE: testValidateStringLengthsRule (14000 ns)
-    [ PASSED ] CASE: testValidateNumericNotInConsecutiveSequenceOrder_LengthLessThanTwo (5000 ns)
-    [ PASSED ] CASE: testValidateDuplicateCharacter_MaxLessThanTwo (5000 ns)
-    [ PASSED ] CASE: testValidateUrl_EmptyPathWithShouldValidatePathFails (5000 ns)
-    TCS: PrefsJsonUnicodeTest, time elapsed: 1106000 ns, RESULT:
-    [ PASSED ] CASE: unpairedSurrogateDoesNotThrowAndSkipsEntry (623000 ns)
-    [ PASSED ] CASE: bmpUnicodeEscapeLoads (104000 ns)
-    [ PASSED ] CASE: surrogatePairLoadsAsOneScalar (215000 ns)
-    TCS: DateUtilStartOfDayTest, time elapsed: 578000 ns, RESULT:
-    [ PASSED ] CASE: startOfDayIsNotAfterInputEvenWithPositiveOffset (308000 ns)
-    [ PASSED ] CASE: startOfDayMatchesLocalCivilDateAndMidnight (8000 ns)
+    [ PASSED ] CASE: testValidateDuplicateCharacterNotInConsecutiveOrderRule (10000 ns)
+    [ PASSED ] CASE: testValidateNumericNotInConsecutiveSequenceOrderRule (21000 ns)
+    [ PASSED ] CASE: testValidateMultipleForms (249000 ns)
+    [ PASSED ] CASE: testValidateMaximumAmountRule (23000 ns)
+    [ PASSED ] CASE: testValidateMinimumAmountRule (15000 ns)
+    [ PASSED ] CASE: testValidateNoWhiteSpaces (17000 ns)
+    [ PASSED ] CASE: testValidateUrl (4994000 ns)
+    [ PASSED ] CASE: testValidateStringLengthsRule (21000 ns)
+    [ PASSED ] CASE: testValidateNumericNotInConsecutiveSequenceOrder_LengthLessThanTwo (4000 ns)
+    [ PASSED ] CASE: testValidateDuplicateCharacter_MaxLessThanTwo (4000 ns)
+    [ PASSED ] CASE: testValidateUrl_EmptyPathWithShouldValidatePathFails (6000 ns)
+    TCS: PrefsJsonUnicodeTest, time elapsed: 1264000 ns, RESULT:
+    [ PASSED ] CASE: unpairedSurrogateDoesNotThrowAndSkipsEntry (851000 ns)
+    [ PASSED ] CASE: bmpUnicodeEscapeLoads (121000 ns)
+    [ PASSED ] CASE: surrogatePairLoadsAsOneScalar (92000 ns)
+    TCS: DateUtilStartOfDayTest, time elapsed: 587000 ns, RESULT:
+    [ PASSED ] CASE: startOfDayIsNotAfterInputEvenWithPositiveOffset (352000 ns)
+    [ PASSED ] CASE: startOfDayMatchesLocalCivilDateAndMidnight (10000 ns)
     [ PASSED ] CASE: startOfDayIsIdempotent (3000 ns)
     [ PASSED ] CASE: isSameDayUsesLocalCalendarDay (15000 ns)
-    TCS: StringUtilToIntegerTest, time elapsed: 585000 ns, RESULT:
-    [ PASSED ] CASE: decimalLiteralsParse (4000 ns)
-    [ PASSED ] CASE: hexAndOtherRadixPrefixesAreNone (5000 ns)
-    [ PASSED ] CASE: plusPrefixWhitespaceAndJunkAreNone (3000 ns)
-    [ PASSED ] CASE: toNumericStripsWhenNotASwiftInt (6000 ns)
-    [ PASSED ] CASE: toAmountHugeExponentIsNone (352000 ns)
+    TCS: StringUtilToIntegerTest, time elapsed: 569000 ns, RESULT:
+    [ PASSED ] CASE: decimalLiteralsParse (5000 ns)
+    [ PASSED ] CASE: hexAndOtherRadixPrefixesAreNone (6000 ns)
+    [ PASSED ] CASE: plusPrefixWhitespaceAndJunkAreNone (4000 ns)
+    [ PASSED ] CASE: toNumericStripsWhenNotASwiftInt (4000 ns)
+    [ PASSED ] CASE: toAmountHugeExponentIsNone (356000 ns)
 Summary: TOTAL: 68
     PASSED: 68, SKIPPED: 0, ERROR: 0
     FAILED: 0
 --------------------------------------------------------------------------------------------------
-Project tests finished, time elapsed: 19113000 ns, RESULT:
-TP: eudi_logic_business.*, time elapsed: 19070000 ns, RESULT:
+Project tests finished, time elapsed: 127372000 ns, RESULT:
+TP: eudi_logic_business.*, time elapsed: 127319000 ns, RESULT:
     PASSED:
-    TP: eudi_logic_business, time elapsed: 18506000 ns
+    TP: eudi_logic_business, time elapsed: 126344000 ns
 Summary: TOTAL: 68
     PASSED: 68, SKIPPED: 0, ERROR: 0
     FAILED: 0
 --------------------------------------------------------------------------------------------------
-[0J7[;r8[?25hcjpm test success
+cjpm test success
 ═══ cjpm test (host) :: eudi_logic_api ═══
 Warning: the current platform is 'aarch64-apple-darwin', the '--target' option will be ignored
-warning: unused import 'std.collection.HashMap'
-  ==> <repo>/Modules/eudi_logic_api/src/main/cangjie/network_manager.cj:21:1:
-   | 
-21 | import std.collection.HashMap
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unused import
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
 
-warning: unused import 'std.time.*'
-  ==> <repo>/Modules/eudi_logic_api/src/main/cangjie/network_manager.cj:23:1:
-   | 
-23 | import std.time.*
-   | ^^^^^^^^^^^^^^^^^ unused import
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-warning: unused import 'std.time.*'
-  ==> <repo>/Modules/eudi_logic_api/src/main/cangjie/network_session_provider.cj:14:1:
-   | 
-14 | import std.time.*
-   | ^^^^^^^^^^^^^^^^^ unused import
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-3 warnings generated, 3 warnings printed.
-warning: unused import 'std.convert.*'
-  ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/form_validator.cj:22:1:
-   | 
-22 | import std.convert.*
-   | ^^^^^^^^^^^^^^^^^^^^ unused import
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-warning: unused import 'std.collection.ArrayList'
-  ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:18:1:
-   | 
-18 | import std.collection.ArrayList
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unused import
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:141:38:
-    | 
-141 |         return date.year * 12 + date.monthValue
-    |                                      ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:231:59:
-    | 
-231 |         return DateTime.of(year: local.year, month: local.monthValue, dayOfMonth: local.dayOfMonth)
-    |                                                           ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:239:26:
-    | 
-239 |             month: local.monthValue,
-    |                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:251:41:
-    | 
-251 |         return la.year == lb.year && la.monthValue == lb.monthValue && la.dayOfMonth == lb.dayOfMonth
-    |                                         ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:251:58:
-    | 
-251 |         return la.year == lb.year && la.monthValue == lb.monthValue && la.dayOfMonth == lb.dayOfMonth
-    |                                                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:255:26:
-    | 
-255 |         let index = date.monthValue - 1
-    |                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:257:28:
-    | 
-257 |             return "${date.monthValue}"
-    |                            ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:263:26:
-    | 
-263 |         let index = date.monthValue - 1
-    |                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:265:28:
-    | 
-265 |             return "${date.monthValue}"
-    |                            ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:289:32:
-    | 
-289 |                 return "${date.monthValue}".padStart(2, padding: "0")
-    |                                ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:291:28:
-    | 
-291 |             return "${date.monthValue}"
-    |                            ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: function 'matcher' is deprecated. `Matcher` has been marked as deprecated.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_string.cj:177:26:
-    | 
-177 |             return regex.matcher(value).fullMatch().isSome()
-    |                          ^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: unused variable:'accessGroup'
-  ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/keychain.cj:50:35:
-   | 
-50 |     public init(service!: String, accessGroup!: String, storageDir!: String) {
-   |                                   ^^^^^^^^^^^ unused variable
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-15 warnings generated, 15 warnings printed.
-[?25l[0J7[;r8
-[1F7[9999E8--------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 Project tests finished, RESULT:
 Summary: TOTAL: 0
     PASSED: 0, SKIPPED: 0, ERROR: 0
     FAILED: 0
 --------------------------------------------------------------------------------------------------
-[0J7[;r8[?25hcjpm test success
+cjpm test success
 ═══ cjpm test (host) :: eudi_logic_authentication ═══
 Warning: the current platform is 'aarch64-apple-darwin', the '--target' option will be ignored
-warning: unused import 'std.collection.ArrayList'
- ==> ~/.cjpm/git/cbor4cj/485748b31fb525b422077858d188e31c4140cf1c/src/cbor_builder.cj:6:1:
-  | 
-6 | import std.collection.ArrayList
-  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unused import
-  | 
-  # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-warning: unused import 'std.collection.ArrayList'
- ==> ~/.cjpm/git/cbor4cj/485748b31fb525b422077858d188e31c4140cf1c/src/cbor_encoder.cj:6:1:
-  | 
-6 | import std.collection.ArrayList
-  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unused import
-  | 
-  # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-warning: constructor 'init' is deprecated. Use member function `public static func parse(value: String, radix!: Int64): BigInt` instead.
-  ==> ~/.cjpm/git/cbor4cj/485748b31fb525b422077858d188e31c4140cf1c/src/abstract_encoder.cj:89:35:
-   | 
-89 |         } else if (length.compare(BigInt("18446744073709551616")) == Ordering.LT) {
-   |                                   ^^^^^^ deprecated
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-3 warnings generated, 3 warnings printed.
-warning: unused import 'std.convert.*'
-  ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/form_validator.cj:22:1:
-   | 
-22 | import std.convert.*
-   | ^^^^^^^^^^^^^^^^^^^^ unused import
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-warning: unused import 'std.collection.ArrayList'
-  ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:18:1:
-   | 
-18 | import std.collection.ArrayList
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unused import
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:141:38:
-    | 
-141 |         return date.year * 12 + date.monthValue
-    |                                      ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:231:59:
-    | 
-231 |         return DateTime.of(year: local.year, month: local.monthValue, dayOfMonth: local.dayOfMonth)
-    |                                                           ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:239:26:
-    | 
-239 |             month: local.monthValue,
-    |                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:251:41:
-    | 
-251 |         return la.year == lb.year && la.monthValue == lb.monthValue && la.dayOfMonth == lb.dayOfMonth
-    |                                         ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:251:58:
-    | 
-251 |         return la.year == lb.year && la.monthValue == lb.monthValue && la.dayOfMonth == lb.dayOfMonth
-    |                                                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:255:26:
-    | 
-255 |         let index = date.monthValue - 1
-    |                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:257:28:
-    | 
-257 |             return "${date.monthValue}"
-    |                            ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:263:26:
-    | 
-263 |         let index = date.monthValue - 1
-    |                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:265:28:
-    | 
-265 |             return "${date.monthValue}"
-    |                            ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:289:32:
-    | 
-289 |                 return "${date.monthValue}".padStart(2, padding: "0")
-    |                                ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:291:28:
-    | 
-291 |             return "${date.monthValue}"
-    |                            ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: function 'matcher' is deprecated. `Matcher` has been marked as deprecated.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_string.cj:177:26:
-    | 
-177 |             return regex.matcher(value).fullMatch().isSome()
-    |                          ^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: unused variable:'accessGroup'
-  ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/keychain.cj:50:35:
-   | 
-50 |     public init(service!: String, accessGroup!: String, storageDir!: String) {
-   |                                   ^^^^^^^^^^^ unused variable
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-15 warnings generated, 15 warnings printed.
-warning: unused variable:'action'
-   ==> <repo>/Modules/eudi_logic_authentication/src/main/cangjie/system_biometry_controller.cj:269:30:
-    | 
-269 |     public func openSettings(action: () -> Unit): Unit {
-    |                              ^^^^^^ unused variable
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-1 warning generated, 1 warning printed.
 warning: unused variable:'_pin'
   ==> <repo>/Modules/eudi_logic_authentication/src/main/cangjie/pin_storage_controller_test.cj:24:28:
-   | 
+   |
 24 |     public func isPinValid(_pin: String): Bool { this.validResult }
    |                            ^^^^ unused variable
-   | 
+   |
    # note: this warning can be suppressed by setting the compiler option `-Woff unused`
 
 1 warning generated, 1 warning printed.
-[?25l[0J7[;r8
-[1F7[9999E8[0J7[;r8
-[1F7[9999E8[0J7[;r8
-[1F7[9999E8[0J7[;r8
-[1F7[9999E8[0J7[;r8
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication     1% [--------------------]      (00:00:00)
 🧪 test TestKeychainPinStorageProvider.testHasPin_AfterSetPin...      (00:00:00)
 
-passed: 1, failed: 0                  1% [--------------------]  1/57 (00:00:01) 8[0J7[;r8
+passed: 1, failed: 0                  1% [--------------------]  1/57 (00:00:00)
 
+🧪 test TestKeychainPinStorageProvider.testHasPin_AfterSetPin...      (00:00:00)
 
+passed: 1, failed: 0                  1% [--------------------]  1/57 (00:00:01)
 
-[4F7[9999E[3F📦 group eudi_logic_authentication     3% [--------------------]      (00:00:00)
+🧪 test TestKeychainPinStorageProvider.testHasPin_AfterSetPin...      (00:00:00)
+
+passed: 1, failed: 0                  1% [--------------------]  1/57 (00:00:01)
+
+🧪 test TestKeychainPinStorageProvider.testHasPin_AfterSetPin...      (00:00:01)
+
+passed: 1, failed: 0                  1% [--------------------]  1/57 (00:00:01)
+
+🧪 test TestKeychainPinStorageProvider.testHasPin_AfterSetPin...      (00:00:01)
+
+passed: 1, failed: 0                  1% [--------------------]  1/57 (00:00:02)
+
+🧪 test TestKeychainPinStorageProvider.testHasPin_AfterSetPin...      (00:00:01)
+
+passed: 1, failed: 0                  1% [--------------------]  1/57 (00:00:02)
+
+🧪 test TestKeychainPinStorageProvider.testHasPin_AfterSetPin...      (00:00:02)
+
+passed: 1, failed: 0                  1% [--------------------]  1/57 (00:00:02)
+
+🧪 test TestKeychainPinStorageProvider.testHasPin_AfterSetPin...      (00:00:02)
+
+passed: 1, failed: 0                  1% [--------------------]  1/57 (00:00:03)
+
+🧪 test TestKeychainPinStorageProvider.testHasPin_AfterSetPin...      (00:00:03)
+
+passed: 1, failed: 0                  1% [--------------------]  1/57 (00:00:03)
+
 🧪 test TestKeychainPinStorageProvider.testHasPin_WhenIterati...      (00:00:00)
 
-passed: 2, failed: 0                  3% [--------------------]  2/57 (00:00:01) 8[0J7[;r8
+passed: 2, failed: 0                  3% [--------------------]  2/57 (00:00:03)
 
+🧪 test TestKeychainPinStorageProvider.testHasPin_WhenIterati...      (00:00:00)
 
+passed: 2, failed: 0                  3% [--------------------]  2/57 (00:00:04)
 
-[4F7[9999E[3F📦 group eudi_logic_authentication     5% [|-------------------]      (00:00:00)
+🧪 test TestKeychainPinStorageProvider.testHasPin_WhenIterati...      (00:00:00)
+
+passed: 2, failed: 0                  3% [--------------------]  2/57 (00:00:04)
+
+🧪 test TestKeychainPinStorageProvider.testHasPin_WhenIterati...      (00:00:01)
+
+passed: 2, failed: 0                  3% [--------------------]  2/57 (00:00:05)
+
 🧪 test TestKeychainPinStorageProvider.testHasPin_WhenSaltMis...      (00:00:00)
 
-passed: 3, failed: 0                  5% [|-------------------]  3/57 (00:00:02) 8[0J7[;r8
+passed: 3, failed: 0                  5% [|-------------------]  3/57 (00:00:05)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication     5% [|-------------------]      (00:00:01)
 🧪 test TestKeychainPinStorageProvider.testHasPin_WhenSaltMis...      (00:00:00)
 
-passed: 3, failed: 0                  5% [|-------------------]  3/57 (00:00:02) 8[0J7[;r8
+passed: 3, failed: 0                  5% [|-------------------]  3/57 (00:00:05)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication     7% [|-------------------]      (00:00:01)
 🧪 test TestKeychainPinStorageProvider.testHasPin_WhenHashMis...      (00:00:00)
 
-passed: 4, failed: 0                  7% [|-------------------]  4/57 (00:00:02) 8[0J7[;r8
+passed: 4, failed: 0                  7% [|-------------------]  4/57 (00:00:06)
 
+🧪 test TestKeychainPinStorageProvider.testHasPin_WhenHashMis...      (00:00:00)
 
+passed: 4, failed: 0                  7% [|-------------------]  4/57 (00:00:06)
 
-[4F7[9999E[3F📦 group eudi_logic_authentication     8% [|-------------------]      (00:00:02)
+🧪 test TestKeychainPinStorageProvider.testHasPin_WhenHashMis...      (00:00:00)
+
+passed: 4, failed: 0                  7% [|-------------------]  4/57 (00:00:06)
+
 🧪 test TestKeychainPinStorageProvider.testHasPin_WhenIterati...      (00:00:00)
 
-passed: 5, failed: 0                  8% [|-------------------]  5/57 (00:00:03) 8[0J7[;r8
+passed: 5, failed: 0                  8% [|-------------------]  5/57 (00:00:07)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    10% [||------------------]      (00:00:02)
 🧪 test TestKeychainPinStorageProvider.testHasPin_WhenIterati...      (00:00:00)
 
-passed: 6, failed: 0                 10% [||------------------]  6/57 (00:00:03) 8[0J7[;r8
+passed: 5, failed: 0                  8% [|-------------------]  5/57 (00:00:07)
 
+🧪 test TestKeychainPinStorageProvider.testHasPin_WhenIterati...      (00:00:00)
 
+passed: 6, failed: 0                 10% [||------------------]  6/57 (00:00:07)
 
-[4F7[9999E[3F📦 group eudi_logic_authentication    14% [||------------------]      (00:00:02)
+🧪 test TestKeychainPinStorageProvider.testHasPin_WhenIterati...      (00:00:00)
+
+passed: 6, failed: 0                 10% [||------------------]  6/57 (00:00:08)
+
 🧪 test TestKeychainPinStorageProvider.testSetPin_StoresSaltH...      (00:00:00)
 
-passed: 8, failed: 0                 14% [||------------------]  8/57 (00:00:03) 8[0J7[;r8
+passed: 8, failed: 0                 14% [||------------------]  8/57 (00:00:08)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    14% [||------------------]      (00:00:03)
 🧪 test TestKeychainPinStorageProvider.testSetPin_StoresSaltH...      (00:00:00)
 
-passed: 8, failed: 0                 14% [||------------------]  8/57 (00:00:04) 8[0J7[;r8
+passed: 8, failed: 0                 14% [||------------------]  8/57 (00:00:08)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    15% [|||-----------------]      (00:00:03)
 🧪 test TestKeychainPinStorageProvider.testSetPin_UsesFreshSa...      (00:00:00)
 
-passed: 9, failed: 0                 15% [|||-----------------]  9/57 (00:00:04) 8[0J7[;r8
+passed: 9, failed: 0                 15% [|||-----------------]  9/57 (00:00:09)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    15% [|||-----------------]      (00:00:03)
 🧪 test TestKeychainPinStorageProvider.testSetPin_UsesFreshSa...      (00:00:00)
 
-passed: 9, failed: 0                 15% [|||-----------------]  9/57 (00:00:04) 8[0J7[;r8
+passed: 9, failed: 0                 15% [|||-----------------]  9/57 (00:00:09)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    15% [|||-----------------]      (00:00:04)
 🧪 test TestKeychainPinStorageProvider.testSetPin_UsesFreshSa...      (00:00:00)
 
-passed: 9, failed: 0                 15% [|||-----------------]  9/57 (00:00:05) 8[0J7[;r8
+passed: 9, failed: 0                 15% [|||-----------------]  9/57 (00:00:09)
 
+🧪 test TestKeychainPinStorageProvider.testSetPin_UsesFreshSa...      (00:00:01)
 
+passed: 9, failed: 0                 15% [|||-----------------]  9/57 (00:00:10)
 
-[4F7[9999E[3F📦 group eudi_logic_authentication    17% [|||-----------------]      (00:00:04)
 🧪 test TestKeychainPinStorageProvider.testIsPinValid_WhenEmp...      (00:00:00)
 
-passed: 10, failed: 0                17% [|||-----------------] 10/57 (00:00:05) 8[0J7[;r8
+passed: 10, failed: 0                17% [|||-----------------] 10/57 (00:00:10)
 
+🧪 test TestKeychainPinStorageProvider.testIsPinValid_WhenEmp...      (00:00:00)
 
+passed: 10, failed: 0                17% [|||-----------------] 10/57 (00:00:11)
 
-[4F7[9999E[3F📦 group eudi_logic_authentication    21% [||||----------------]      (00:00:04)
 🧪 test TestKeychainPinStorageProvider.testIsPinValid_WhenCor...      (00:00:00)
 
-passed: 12, failed: 0                21% [||||----------------] 12/57 (00:00:06) 8[0J7[;r8
+passed: 12, failed: 0                21% [||||----------------] 12/57 (00:00:11)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    21% [||||----------------]      (00:00:05)
 🧪 test TestKeychainPinStorageProvider.testIsPinValid_WhenCor...      (00:00:00)
 
-passed: 12, failed: 0                21% [||||----------------] 12/57 (00:00:06) 8[0J7[;r8
+passed: 12, failed: 0                21% [||||----------------] 12/57 (00:00:11)
 
+🧪 test TestKeychainPinStorageProvider.testIsPinValid_WhenCor...      (00:00:01)
 
+passed: 12, failed: 0                21% [||||----------------] 12/57 (00:00:12)
 
-[4F7[9999E[3F📦 group eudi_logic_authentication    21% [||||----------------]      (00:00:05)
-🧪 test TestKeychainPinStorageProvider.testIsPinValid_WhenCor...      (00:00:00)
-
-passed: 12, failed: 0                21% [||||----------------] 12/57 (00:00:06) 8[0J7[;r8
-
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    22% [||||----------------]      (00:00:05)
 🧪 test TestKeychainPinStorageProvider.testIsPinValid_WhenWro...      (00:00:00)
 
-passed: 13, failed: 0                22% [||||----------------] 13/57 (00:00:07) 8[0J7[;r8
+passed: 13, failed: 0                22% [||||----------------] 13/57 (00:00:12)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    22% [||||----------------]      (00:00:06)
 🧪 test TestKeychainPinStorageProvider.testIsPinValid_WhenWro...      (00:00:00)
 
-passed: 13, failed: 0                22% [||||----------------] 13/57 (00:00:07) 8[0J7[;r8
+passed: 13, failed: 0                22% [||||----------------] 13/57 (00:00:12)
 
+🧪 test TestKeychainPinStorageProvider.testIsPinValid_WhenWro...      (00:00:00)
 
+passed: 13, failed: 0                22% [||||----------------] 13/57 (00:00:13)
 
-[4F7[9999E[3F📦 group eudi_logic_authentication    24% [||||----------------]      (00:00:06)
+🧪 test TestKeychainPinStorageProvider.testIsPinValid_WhenWro...      (00:00:01)
+
+passed: 13, failed: 0                22% [||||----------------] 13/57 (00:00:13)
+
 🧪 test TestKeychainPinStorageProvider.testIsPinValid_AfterPi...      (00:00:00)
 
-passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:07) 8[0J7[;r8
+passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:13)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    24% [||||----------------]      (00:00:07)
 🧪 test TestKeychainPinStorageProvider.testIsPinValid_AfterPi...      (00:00:00)
 
-passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:08) 8[0J7[;r8
+passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:14)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    24% [||||----------------]      (00:00:07)
 🧪 test TestKeychainPinStorageProvider.testIsPinValid_AfterPi...      (00:00:00)
 
-passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:08) 8[0J7[;r8
+passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:14)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    24% [||||----------------]      (00:00:07)
 🧪 test TestKeychainPinStorageProvider.testIsPinValid_AfterPi...      (00:00:01)
 
-passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:08) 8[0J7[;r8
+passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:14)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    24% [||||----------------]      (00:00:08)
 🧪 test TestKeychainPinStorageProvider.testIsPinValid_AfterPi...      (00:00:01)
 
-passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:09) 8[0J7[;r8
+passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:15)
 
+🧪 test TestKeychainPinStorageProvider.testIsPinValid_AfterPi...      (00:00:01)
 
+passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:15)
 
-[4F7[9999E[3F📦 group eudi_logic_authentication    26% [|||||---------------]      (00:00:08)
+🧪 test TestKeychainPinStorageProvider.testIsPinValid_AfterPi...      (00:00:02)
+
+passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:15)
+
+🧪 test TestKeychainPinStorageProvider.testIsPinValid_AfterPi...      (00:00:02)
+
+passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:16)
+
+🧪 test TestKeychainPinStorageProvider.testIsPinValid_AfterPi...      (00:00:02)
+
+passed: 14, failed: 0                24% [||||----------------] 14/57 (00:00:16)
+
 🧪 test TestKeychainPinStorageProvider.testIsPinValid_WhenIte...      (00:00:00)
 
-passed: 15, failed: 0                26% [|||||---------------] 15/57 (00:00:09) 8[0J7[;r8
+passed: 15, failed: 0                26% [|||||---------------] 15/57 (00:00:17)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    26% [|||||---------------]      (00:00:08)
 🧪 test TestKeychainPinStorageProvider.testIsPinValid_WhenIte...      (00:00:00)
 
-passed: 15, failed: 0                26% [|||||---------------] 15/57 (00:00:09) 8[0J7[;r8
+passed: 15, failed: 0                26% [|||||---------------] 15/57 (00:00:17)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    28% [|||||---------------]      (00:00:09)
 🧪 test TestKeychainPinStorageProvider.testIsPinValid_WhenIte...      (00:00:00)
 
-passed: 16, failed: 0                28% [|||||---------------] 16/57 (00:00:10) 8[0J7[;r8
+passed: 16, failed: 0                28% [|||||---------------] 16/57 (00:00:17)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    29% [|||||---------------]      (00:00:09)
 🧪 test TestKeychainPinStorageProvider.testHasPin_WhenSaltIsE...      (00:00:00)
 
-passed: 17, failed: 0                29% [|||||---------------] 17/57 (00:00:10) 8[0J7[;r8
+passed: 17, failed: 0                29% [|||||---------------] 17/57 (00:00:18)
 
+🧪 test TestKeychainPinStorageProvider.testHasPin_WhenSaltIsE...      (00:00:00)
 
+passed: 17, failed: 0                29% [|||||---------------] 17/57 (00:00:18)
 
-[4F7[9999E[3F📦 group eudi_logic_authentication    31% [||||||--------------]      (00:00:09)
 🧪 test TestKeychainPinStorageProvider.testHasPin_WhenHashIsE...      (00:00:00)
 
-passed: 18, failed: 0                31% [||||||--------------] 18/57 (00:00:11) 8[0J7[;r8
+passed: 18, failed: 0                31% [||||||--------------] 18/57 (00:00:18)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    31% [||||||--------------]      (00:00:10)
 🧪 test TestKeychainPinStorageProvider.testHasPin_WhenHashIsE...      (00:00:00)
 
-passed: 18, failed: 0                31% [||||||--------------] 18/57 (00:00:11) 8[0J7[;r8
+passed: 18, failed: 0                31% [||||||--------------] 18/57 (00:00:19)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    63% [||||||||||||--------]      (00:00:10)
 🧪 test TestPinPbkdf2GoldVector.testIsPinValid_AgainstSwiftCo...      (00:00:00)
 
-passed: 36, failed: 0                63% [||||||||||||--------] 36/57 (00:00:11) 8[0J7[;r8
+passed: 36, failed: 0                63% [||||||||||||--------] 36/57 (00:00:19)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    64% [||||||||||||--------]      (00:00:10)
 🧪 test TestPinPbkdf2GoldVector.testIsPinValid_AgainstSwiftCo...      (00:00:00)
 
-passed: 37, failed: 0                64% [||||||||||||--------] 37/57 (00:00:12) 8[0J7[;r8
+passed: 37, failed: 0                64% [||||||||||||--------] 37/57 (00:00:19)
 
-
-
-[4F7[9999E[3F📦 group eudi_logic_authentication    64% [||||||||||||--------]      (00:00:11)
 🧪 test TestPinPbkdf2GoldVector.testIsPinValid_AgainstSwiftCo...      (00:00:00)
 
-passed: 37, failed: 0                64% [||||||||||||--------] 37/57 (00:00:12) 8[0J7[;r8
+passed: 37, failed: 0                64% [||||||||||||--------] 37/57 (00:00:20)
 
+🧪 test TestPinPbkdf2GoldVector.testIsPinValid_AgainstSwiftCo...      (00:00:00)
 
-[3F7[9999E[2F📦 group eudi_logic_authentication    66% [|||||||||||||-------]      (00:00:11)
-
-passed: 38, failed: 0                66% [|||||||||||||-------] 38/57 (00:00:12) 8--------------------------------------------------------------------------------------------------
-TP: eudi_logic_authentication, time elapsed: 11652947000 ns, RESULT:
-    TCS: TestKeychainPinStorageProvider, time elapsed: 10280377000 ns, RESULT:
-    [ PASSED ] CASE: testHasPin_WhenNothingStored_ThenFalse (108000 ns)
-    [ PASSED ] CASE: testHasPin_AfterSetPin_ThenTrue (459900000 ns)
-    [ PASSED ] CASE: testHasPin_WhenIterationsMissing_ThenFalse (445881000 ns)
-    [ PASSED ] CASE: testHasPin_WhenSaltMissing_ThenFalse (475625000 ns)
-    [ PASSED ] CASE: testHasPin_WhenHashMissing_ThenFalse (433164000 ns)
-    [ PASSED ] CASE: testHasPin_WhenIterationsIsZero_ThenFalse (451901000 ns)
-    [ PASSED ] CASE: testHasPin_WhenIterationsIsNotNumeric_ThenFalse (446378000 ns)
-    [ PASSED ] CASE: testSetPin_WhenEmptyString_ThenNothingStored (10000 ns)
-    [ PASSED ] CASE: testSetPin_StoresSaltHashAndIterations (475597000 ns)
-    [ PASSED ] CASE: testSetPin_UsesFreshSaltOnEverySet (1009141000 ns)
-    [ PASSED ] CASE: testIsPinValid_WhenEmptyPin_ThenFalse (492942000 ns)
-    [ PASSED ] CASE: testIsPinValid_WhenNoStoredPin_ThenFalse (10000 ns)
-    [ PASSED ] CASE: testIsPinValid_WhenCorrectPin_ThenTrue (908790000 ns)
-    [ PASSED ] CASE: testIsPinValid_WhenWrongPin_ThenFalse (1003780000 ns)
-    [ PASSED ] CASE: testIsPinValid_AfterPinChange_OldPinFailsNewPinSucceeds (1814276000 ns)
-    [ PASSED ] CASE: testIsPinValid_WhenIterationsMissing_ThenFalse (454263000 ns)
-    [ PASSED ] CASE: testIsPinValid_WhenIterationsIsZero_ThenFalse (497488000 ns)
-    [ PASSED ] CASE: testHasPin_WhenSaltIsEmptyData_ThenFalse (451641000 ns)
-    [ PASSED ] CASE: testHasPin_WhenHashIsEmptyData_ThenFalse (456917000 ns)
-    [ PASSED ] CASE: testIsPinValid_WhenStoredHexHasOddRuneCount_ThenFalse (7000 ns)
-    TCS: TestKeychainPinThrottleProvider, time elapsed: 782000 ns, RESULT:
-    [ PASSED ] CASE: testGetState_WhenNothingPersisted_ThenIdle (42000 ns)
-    [ PASSED ] CASE: testGetState_WhenEndsAtZero_ThenIdle (8000 ns)
-    [ PASSED ] CASE: testGetState_WhenNowExceedsEndsAt_ThenIdle (11000 ns)
-    [ PASSED ] CASE: testGetState_WhenLockoutActive_ThenReturnsRemainingAndTotal (10000 ns)
-    [ PASSED ] CASE: testGetState_WhenClockMovedBackwardBeforeStartedAt_ThenReportsFullTotal (4000 ns)
-    [ PASSED ] CASE: testRecordFailure_WhenBelowThreshold_ThenIdleAndCounterIncremented (4000 ns)
-    [ PASSED ] CASE: testRecordFailure_WhenThirdFailure_ThenStartsFirstLockoutWith30s (6000 ns)
-    [ PASSED ] CASE: testRecordFailure_WhenSecondLockoutBatch_ThenEscalatesTo90s (8000 ns)
-    [ PASSED ] CASE: testRecordFailure_WhenThirdLockoutBatch_ThenEscalatesTo300s (8000 ns)
-    [ PASSED ] CASE: testRecordFailure_WhenLevelExceedsDurations_ThenReusesLastDuration (12000 ns)
-    [ PASSED ] CASE: testRecordFailure_WhenDurationsEmpty_ThenReturnsActiveWithZeroDuration (5000 ns)
-    [ PASSED ] CASE: testRecordSuccess_ClearsAllPersistedState (7000 ns)
-    [ PASSED ] CASE: testRecordSuccess_AfterReset_NextLockoutStartsAt30sAgain (8000 ns)
-    [ PASSED ] CASE: testGetState_WhenStoredValuesAreNonNumeric_ThenIdle (17000 ns)
-    [ PASSED ] CASE: testRecordFailure_WhenStoredCounterIsNonNumeric_ThenTreatsAsZero (4000 ns)
-    [ PASSED ] CASE: testGetState_WhenInvertedWindow_ThenIdle (4000 ns)
-    TCS: TestPinPbkdf2GoldVector, time elapsed: 1370659000 ns, RESULT:
-    [ PASSED ] CASE: testIsPinValid_AgainstSwiftCommonCryptoHash_ThenTrue (445543000 ns)
-    [ PASSED ] CASE: testIsPinValid_AgainstSwiftCommonCryptoHash_WrongPinThenFalse (922119000 ns)
-    TCS: TestPinStorageController, time elapsed: 171000 ns, RESULT:
-    [ PASSED ] CASE: testhasPin (11000 ns)
-    [ PASSED ] CASE: testSetPin (5000 ns)
-    [ PASSED ] CASE: testIsPinValid (3000 ns)
-    TCS: TestPinThrottleController, time elapsed: 197000 ns, RESULT:
-    [ PASSED ] CASE: testGetState_WhenProviderReturnsIdle_ThenReturnsIdle (8000 ns)
+passed: 37, failed: 0                64% [||||||||||||--------] 37/57 (00:00:20) --------------------------------------------------------------------------------------------------
+TP: eudi_logic_authentication, time elapsed: 20193490000 ns, RESULT:
+    TCS: TestKeychainPinStorageProvider, time elapsed: 18691696000 ns, RESULT:
+    [ PASSED ] CASE: testHasPin_WhenNothingStored_ThenFalse (366000 ns)
+    [ PASSED ] CASE: testHasPin_AfterSetPin_ThenTrue (3319195000 ns)
+    [ PASSED ] CASE: testHasPin_WhenIterationsMissing_ThenFalse (1427744000 ns)
+    [ PASSED ] CASE: testHasPin_WhenSaltMissing_ThenFalse (706393000 ns)
+    [ PASSED ] CASE: testHasPin_WhenHashMissing_ThenFalse (1105104000 ns)
+    [ PASSED ] CASE: testHasPin_WhenIterationsIsZero_ThenFalse (655064000 ns)
+    [ PASSED ] CASE: testHasPin_WhenIterationsIsNotNumeric_ThenFalse (696937000 ns)
+    [ PASSED ] CASE: testSetPin_WhenEmptyString_ThenNothingStored (21000 ns)
+    [ PASSED ] CASE: testSetPin_StoresSaltHashAndIterations (589134000 ns)
+    [ PASSED ] CASE: testSetPin_UsesFreshSaltOnEverySet (1493285000 ns)
+    [ PASSED ] CASE: testIsPinValid_WhenEmptyPin_ThenFalse (502633000 ns)
+    [ PASSED ] CASE: testIsPinValid_WhenNoStoredPin_ThenFalse (8000 ns)
+    [ PASSED ] CASE: testIsPinValid_WhenCorrectPin_ThenTrue (1224562000 ns)
+    [ PASSED ] CASE: testIsPinValid_WhenWrongPin_ThenFalse (1486052000 ns)
+    [ PASSED ] CASE: testIsPinValid_AfterPinChange_OldPinFailsNewPinSucceeds (3051231000 ns)
+    [ PASSED ] CASE: testIsPinValid_WhenIterationsMissing_ThenFalse (773763000 ns)
+    [ PASSED ] CASE: testIsPinValid_WhenIterationsIsZero_ThenFalse (503731000 ns)
+    [ PASSED ] CASE: testHasPin_WhenSaltIsEmptyData_ThenFalse (596361000 ns)
+    [ PASSED ] CASE: testHasPin_WhenHashIsEmptyData_ThenFalse (555844000 ns)
+    [ PASSED ] CASE: testIsPinValid_WhenStoredHexHasOddRuneCount_ThenFalse (13000 ns)
+    TCS: TestKeychainPinThrottleProvider, time elapsed: 1577000 ns, RESULT:
+    [ PASSED ] CASE: testGetState_WhenNothingPersisted_ThenIdle (74000 ns)
+    [ PASSED ] CASE: testGetState_WhenEndsAtZero_ThenIdle (14000 ns)
+    [ PASSED ] CASE: testGetState_WhenNowExceedsEndsAt_ThenIdle (18000 ns)
+    [ PASSED ] CASE: testGetState_WhenLockoutActive_ThenReturnsRemainingAndTotal (24000 ns)
+    [ PASSED ] CASE: testGetState_WhenClockMovedBackwardBeforeStartedAt_ThenReportsFullTotal (10000 ns)
+    [ PASSED ] CASE: testRecordFailure_WhenBelowThreshold_ThenIdleAndCounterIncremented (9000 ns)
+    [ PASSED ] CASE: testRecordFailure_WhenThirdFailure_ThenStartsFirstLockoutWith30s (14000 ns)
+    [ PASSED ] CASE: testRecordFailure_WhenSecondLockoutBatch_ThenEscalatesTo90s (18000 ns)
+    [ PASSED ] CASE: testRecordFailure_WhenThirdLockoutBatch_ThenEscalatesTo300s (23000 ns)
+    [ PASSED ] CASE: testRecordFailure_WhenLevelExceedsDurations_ThenReusesLastDuration (28000 ns)
+    [ PASSED ] CASE: testRecordFailure_WhenDurationsEmpty_ThenReturnsActiveWithZeroDuration (14000 ns)
+    [ PASSED ] CASE: testRecordSuccess_ClearsAllPersistedState (19000 ns)
+    [ PASSED ] CASE: testRecordSuccess_AfterReset_NextLockoutStartsAt30sAgain (26000 ns)
+    [ PASSED ] CASE: testGetState_WhenStoredValuesAreNonNumeric_ThenIdle (40000 ns)
+    [ PASSED ] CASE: testRecordFailure_WhenStoredCounterIsNonNumeric_ThenTreatsAsZero (15000 ns)
+    [ PASSED ] CASE: testGetState_WhenInvertedWindow_ThenIdle (10000 ns)
+    TCS: TestPinPbkdf2GoldVector, time elapsed: 1498887000 ns, RESULT:
+    [ PASSED ] CASE: testIsPinValid_AgainstSwiftCommonCryptoHash_ThenTrue (491687000 ns)
+    [ PASSED ] CASE: testIsPinValid_AgainstSwiftCommonCryptoHash_WrongPinThenFalse (1006886000 ns)
+    TCS: TestPinStorageController, time elapsed: 176000 ns, RESULT:
+    [ PASSED ] CASE: testhasPin (10000 ns)
+    [ PASSED ] CASE: testSetPin (6000 ns)
+    [ PASSED ] CASE: testIsPinValid (4000 ns)
+    TCS: TestPinThrottleController, time elapsed: 215000 ns, RESULT:
+    [ PASSED ] CASE: testGetState_WhenProviderReturnsIdle_ThenReturnsIdle (6000 ns)
     [ PASSED ] CASE: testGetState_WhenProviderReturnsActiveLockout_ThenReturnsActiveLockout (3000 ns)
     [ PASSED ] CASE: testRecordFailure_WhenProviderReturnsIdle_ThenForwardsIdle (3000 ns)
-    [ PASSED ] CASE: testRecordFailure_WhenProviderReturnsActiveLockout_ThenForwardsLockout (4000 ns)
-    [ PASSED ] CASE: testRecordSuccess_WhenCalled_ThenDelegatesToProvider (2000 ns)
-    TCS: TestSystemBiometryController, time elapsed: 555000 ns, RESULT:
-    [ PASSED ] CASE: testRequestUnlock_WhenPolicyDenied_ThenDeniedAccess (23000 ns)
+    [ PASSED ] CASE: testRecordFailure_WhenProviderReturnsActiveLockout_ThenForwardsLockout (3000 ns)
+    [ PASSED ] CASE: testRecordSuccess_WhenCalled_ThenDelegatesToProvider (3000 ns)
+    TCS: TestSystemBiometryController, time elapsed: 650000 ns, RESULT:
+    [ PASSED ] CASE: testRequestUnlock_WhenPolicyDenied_ThenDeniedAccess (68000 ns)
     [ PASSED ] CASE: testRequestBiometricUnlock_WhenFaceID_ThenNoFaceIdEnrolled (7000 ns)
-    [ PASSED ] CASE: testRequestBiometricUnlock_WhenTouchID_ThenNoFingerprintEnrolled (7000 ns)
-    [ PASSED ] CASE: testRequestBiometricUnlock_WhenBiometryNotSupported_yieldsBiometryNotSupported (71000 ns)
-    [ PASSED ] CASE: testRequestBiometricUnlock_WhenKeychainValidates_ThenReturnSuccess (5000 ns)
-    [ PASSED ] CASE: testRequestBiometricUnlock_WhenKeychainThrows_ThenReturnBiometricError (6000 ns)
-    [ PASSED ] CASE: testRequestBiometricUnlock_WhenLAContextErrorIsMinus6_ThenDeniedAccess (4000 ns)
-    [ PASSED ] CASE: testRequestBiometricUnlock_WhenLAContextErrorIsUserFallback_ThenBiometricError (5000 ns)
-    [ PASSED ] CASE: testSystemBiometryError_id_ReturnsLocalizedDescription (25000 ns)
-    [ PASSED ] CASE: testBiometryType_ReturnsContextBiometryType (4000 ns)
-    [ PASSED ] CASE: testOpenSettings_WhenCalled_ThenDoesNotCrash (2000 ns)
+    [ PASSED ] CASE: testRequestBiometricUnlock_WhenTouchID_ThenNoFingerprintEnrolled (5000 ns)
+    [ PASSED ] CASE: testRequestBiometricUnlock_WhenBiometryNotSupported_yieldsBiometryNotSupported (91000 ns)
+    [ PASSED ] CASE: testRequestBiometricUnlock_WhenKeychainValidates_ThenReturnSuccess (3000 ns)
+    [ PASSED ] CASE: testRequestBiometricUnlock_WhenKeychainThrows_ThenReturnBiometricError (8000 ns)
+    [ PASSED ] CASE: testRequestBiometricUnlock_WhenLAContextErrorIsMinus6_ThenDeniedAccess (6000 ns)
+    [ PASSED ] CASE: testRequestBiometricUnlock_WhenLAContextErrorIsUserFallback_ThenBiometricError (6000 ns)
+    [ PASSED ] CASE: testSystemBiometryError_id_ReturnsLocalizedDescription (39000 ns)
+    [ PASSED ] CASE: testBiometryType_ReturnsContextBiometryType (5000 ns)
+    [ PASSED ] CASE: testOpenSettings_WhenCalled_ThenDoesNotCrash (3000 ns)
 Summary: TOTAL: 57
     PASSED: 57, SKIPPED: 0, ERROR: 0
     FAILED: 0
 --------------------------------------------------------------------------------------------------
-Project tests finished, time elapsed: 11653531000 ns, RESULT:
-TP: eudi_logic_authentication.*, time elapsed: 11653483000 ns, RESULT:
+Project tests finished, time elapsed: 20194545000 ns, RESULT:
+TP: eudi_logic_authentication.*, time elapsed: 20194480000 ns, RESULT:
     PASSED:
-    TP: eudi_logic_authentication, time elapsed: 11652947000 ns
+    TP: eudi_logic_authentication, time elapsed: 20193490000 ns
 Summary: TOTAL: 57
     PASSED: 57, SKIPPED: 0, ERROR: 0
     FAILED: 0
 --------------------------------------------------------------------------------------------------
-[0J7[;r8[?25hcjpm test success
+cjpm test success
 ═══ cjpm test (host) :: eudi_logic_storage ═══
 Warning: the current platform is 'aarch64-apple-darwin', the '--target' option will be ignored
-warning: unused import 'std.convert.*'
-  ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/form_validator.cj:22:1:
-   | 
-22 | import std.convert.*
-   | ^^^^^^^^^^^^^^^^^^^^ unused import
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
 
-warning: unused import 'std.collection.ArrayList'
-  ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:18:1:
-   | 
-18 | import std.collection.ArrayList
-   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ unused import
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:141:38:
-    | 
-141 |         return date.year * 12 + date.monthValue
-    |                                      ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:231:59:
-    | 
-231 |         return DateTime.of(year: local.year, month: local.monthValue, dayOfMonth: local.dayOfMonth)
-    |                                                           ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:239:26:
-    | 
-239 |             month: local.monthValue,
-    |                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:251:41:
-    | 
-251 |         return la.year == lb.year && la.monthValue == lb.monthValue && la.dayOfMonth == lb.dayOfMonth
-    |                                         ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:251:58:
-    | 
-251 |         return la.year == lb.year && la.monthValue == lb.monthValue && la.dayOfMonth == lb.dayOfMonth
-    |                                                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:255:26:
-    | 
-255 |         let index = date.monthValue - 1
-    |                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:257:28:
-    | 
-257 |             return "${date.monthValue}"
-    |                            ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:263:26:
-    | 
-263 |         let index = date.monthValue - 1
-    |                          ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:265:28:
-    | 
-265 |             return "${date.monthValue}"
-    |                            ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:289:32:
-    | 
-289 |                 return "${date.monthValue}".padStart(2, padding: "0")
-    |                                ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: property 'monthValue' is deprecated. Use `public prop month: Month` instead.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_date.cj:291:28:
-    | 
-291 |             return "${date.monthValue}"
-    |                            ^^^^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: function 'matcher' is deprecated. `Matcher` has been marked as deprecated.
-   ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/util_string.cj:177:26:
-    | 
-177 |             return regex.matcher(value).fullMatch().isSome()
-    |                          ^^^^^^^ deprecated
-    | 
-    # note: this warning can be suppressed by setting the compiler option `-Woff deprecated`
-
-warning: unused variable:'accessGroup'
-  ==> <repo>/Modules/eudi_logic_business/src/main/cangjie/keychain.cj:50:35:
-   | 
-50 |     public init(service!: String, accessGroup!: String, storageDir!: String) {
-   |                                   ^^^^^^^^^^^ unused variable
-   | 
-   # note: this warning can be suppressed by setting the compiler option `-Woff unused`
-
-15 warnings generated, 15 warnings printed.
-[?25l[0J7[;r8
-[1F7[9999E8[0J7[;r8
-[1F7[9999E8[0J7[;r8
-[1F7[9999E8--------------------------------------------------------------------------------------------------
-TP: eudi_logic_storage, time elapsed: 1248000 ns, RESULT:
-    TCS: StorageJsonUnicodeTest, time elapsed: 1248000 ns, RESULT:
-    [ PASSED ] CASE: unpairedSurrogateDoesNotThrow (113000 ns)
-    [ PASSED ] CASE: bmpUnicodeEscapeLoads (6000 ns)
-    [ PASSED ] CASE: surrogatePairLoadsAsOneScalar (13000 ns)
-    [ PASSED ] CASE: unpairedSurrogateInObjectArrayDoesNotThrow (19000 ns)
-    [ PASSED ] CASE: truncatedLastObjectIsDropped (8000 ns)
-    [ PASSED ] CASE: unpairedSurrogateBookmarkFileDoesNotThrow (576000 ns)
+--------------------------------------------------------------------------------------------------
+TP: eudi_logic_storage, time elapsed: 1721000 ns, RESULT:
+    TCS: StorageJsonUnicodeTest, time elapsed: 1721000 ns, RESULT:
+    [ PASSED ] CASE: unpairedSurrogateDoesNotThrow (139000 ns)
+    [ PASSED ] CASE: bmpUnicodeEscapeLoads (5000 ns)
+    [ PASSED ] CASE: surrogatePairLoadsAsOneScalar (37000 ns)
+    [ PASSED ] CASE: unpairedSurrogateInObjectArrayDoesNotThrow (205000 ns)
+    [ PASSED ] CASE: truncatedLastObjectIsDropped (10000 ns)
+    [ PASSED ] CASE: unpairedSurrogateBookmarkFileDoesNotThrow (618000 ns)
 Summary: TOTAL: 6
     PASSED: 6, SKIPPED: 0, ERROR: 0
     FAILED: 0
 --------------------------------------------------------------------------------------------------
-Project tests finished, time elapsed: 11836000 ns, RESULT:
-TP: eudi_logic_storage.*, time elapsed: 11789000 ns, RESULT:
+Project tests finished, time elapsed: 2424000 ns, RESULT:
+TP: eudi_logic_storage.*, time elapsed: 2390000 ns, RESULT:
     PASSED:
-    TP: eudi_logic_storage, time elapsed: 1248000 ns
+    TP: eudi_logic_storage, time elapsed: 1721000 ns
 Summary: TOTAL: 6
     PASSED: 6, SKIPPED: 0, ERROR: 0
     FAILED: 0
 --------------------------------------------------------------------------------------------------
-[0J7[;r8[?25hcjpm test success
+cjpm test success

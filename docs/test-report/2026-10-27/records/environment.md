@@ -1,9 +1,9 @@
-# 测试环境（R3 计分轮，2026-10-27）
+# 测试环境（2026-10-27 / 10-28）
 
 | 项 | 值 |
 |---|---|
-| 计分构建 | `eudi-app-hmos-wallet-ui` `0e1f5c5`，从 GitHub 全新 `git clone --recursive` |
-| submodule | 14 个 `third_party/eudi_lib_*`，版本按 `0e1f5c5` 中的 gitlink 锁定 |
+| 被测版本 | `eudi-app-hmos-wallet-ui` `c8d48ce`（在全新 `git clone --recursive` 的仓库上快进到该提交） |
+| submodule | 14 个 `third_party/eudi_lib_*`，版本按 `c8d48ce` 中的 gitlink 锁定 |
 | 设备 | HUAWEI Mate 60 Pro，型号 ALN-AL80 |
 | 设备系统 | `ALN-AL00 6.1.0.125(SP35C00E111R10P8log)`，API 24 |
 | 宿主机 | macOS 26.6.2（25G83），arm64 |

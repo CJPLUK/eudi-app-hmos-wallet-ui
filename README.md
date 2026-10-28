@@ -157,8 +157,8 @@ To run the host tests before every commit, install the hook once per clone:
 ./githooks/install.sh          # skip once with EUDI_SKIP_TESTS=1 git commit ...
 ```
 
-The latest test report, with iOS case parity, end-to-end results and residual risks, is in
-[docs/test-report/2026-10-27](docs/test-report/2026-10-27/README.en.md).
+The latest test report (in Chinese), with feature coverage against iOS, iOS case parity and
+end-to-end results, is in [docs/test-report/2026-10-27](docs/test-report/2026-10-27/README.md).
 
 ## Disclaimer
 
