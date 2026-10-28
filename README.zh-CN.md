@@ -9,6 +9,8 @@ HarmonyOS 移植版。钱包业务逻辑与界面使用 **Cangjie（仓颉）+ A
 本项目以 iOS 参考实现 [eudi-app-ios-wallet-ui](https://github.com/eu-digital-identity-wallet/eudi-app-ios-wallet-ui)
 为基准逐模块移植，行为、界面与测试用例均与之对齐。
 
+与 iOS 参考实现对照的测试结果见[测试报告](docs/test-report/README.zh-CN.md)。
+
 > **本项目为非官方移植**，与欧盟委员会（European Commission）无隶属关系，未获其认可，也不由其维护。
 > “HarmonyOS” 是华为技术有限公司的商标。
 
@@ -144,8 +146,8 @@ HDC_TARGET=<serial-or-host:port> ./run_device_tests.sh
 ./githooks/install.sh          # 临时跳过：EUDI_SKIP_TESTS=1 git commit ...
 ```
 
-最新测试报告（含与 iOS 用例的对齐、端到端结果与残留风险）见
-[docs/test-report/2026-10-27](docs/test-report/2026-10-27/README.md)。
+最新测试报告（含与 iOS 的功能对比、用例对齐和端到端结果）见
+[docs/test-report](docs/test-report/README.zh-CN.md)。
 
 ## 免责声明
 

@@ -10,6 +10,9 @@ The port follows the iOS reference implementation,
 [eudi-app-ios-wallet-ui](https://github.com/eu-digital-identity-wallet/eudi-app-ios-wallet-ui),
 module by module, and keeps its behaviour, screens and test cases aligned with it.
 
+The results of testing it against the iOS reference implementation are in the
+[test report](docs/test-report/README.zh-CN.md) (in Chinese).
+
 > **This is an unofficial project.** It is not affiliated with, endorsed by, or maintained by the
 > European Commission. "HarmonyOS" is a trademark of Huawei Technologies Co., Ltd.
 
@@ -158,7 +161,7 @@ To run the host tests before every commit, install the hook once per clone:
 ```
 
 The latest test report (in Chinese), with feature coverage against iOS, iOS case parity and
-end-to-end results, is in [docs/test-report/2026-10-27](docs/test-report/2026-10-27/README.md).
+end-to-end results, is in [docs/test-report](docs/test-report/README.zh-CN.md).
 
 ## Disclaimer
 
